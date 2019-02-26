@@ -16,6 +16,10 @@
             background-color: #faec6f;
             color: #000;
         }
+
+        .progress {
+            --color-blue: #faec6f;
+        }
     </style>
 </head>
 <body class="shower list">
@@ -27,54 +31,89 @@
 
     <section class="slide" id="cover">
         <h2>Оптимизация и все такое</h2>
-        <p>Brought to you by <a href="http://pepelsbey.net">Vadim Makeev</a></p>
-        <figure>
-            <img class="cover" src="pictures/cover.jpg" alt="Hands on the orange typewriter in a park">
-            <figcaption class="copyright right white">
-                <a href="http://fiftyfootshadows.net/">© John Carey</a>
-            </figcaption>
-        </figure>
+        <p>Brought to you by Asya Bakhnar</p>
+
         <style>
             #cover h2 {
                 margin: 30px 0 0;
-                color: white;
+                color: black;
                 text-align: center;
                 font-size: 70px;
             }
 
             #cover p {
-                margin: 10px 0 0;
+                position: absolute;
+                bottom: 0;
+                right: 50px;
                 text-align: center;
-                color: white;
+                color: black;
                 font-style: italic;
                 font-size: 20px;
             }
 
-            #cover p a {
-                color: white;
+            #cover::after {
+                visibility: hidden;
             }
         </style>
     </section>
 
-    <section class="slide">
-        <h2>Shower key features</h2>
-        <ol>
-            <li>Built on HTML, CSS and JavaScript</li>
-            <li>Works in all modern browsers</li>
-            <li>Themes are separated from engine</li>
-            <li>Fully keyboard accessible</li>
-            <li>Printable to PDF</li>
-        </ol>
-        <p class="note">Shower ['ʃəuə] noun. A person or thing that shows.</p>
+    <section class="slide" id="why">
+        <h2>Почему мы все здесь?</h2>
+
+        <figure>
+            <img class="place bottom left" src="pictures/not-sure.jpg" alt="not-sure">
+        </figure>
+
+        <style>
+            #why .place {
+                position: relative;
+                max-width: 410px;
+            }
+        </style>
     </section>
 
-    <section class="slide">
-        <h2>Plain text on your slides</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur <a href="#4">adipisicing</a> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <em>quis nostrud</em> exercitation ullamco laboris <strong>nisi ut aliquip</strong> ex ea commodo consequat. Duis aute irure <i>dolor</i> in reprehenderit in voluptate velit esse cillum <b>dolore</b> eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in <code>&lt;culpa&gt;</code> qui officia deserunt mollit anim id est laborum.</p>
+    <section class="slide" id="resurce">
+        <figure>
+            <img class="place bottom left" src="pictures/book.jpg" alt="not-sure">
+        </figure>
+
+        <p class="place right center modenr-tool-title">
+            <span class="plus">+</span>
+            <img src="pictures/modern-tools-logo.svg" alt="modern-tools-logo"/>
+            <span class="h3">Modern DevTools</span>
+        </p>
+
+        <style>
+            #resurce img {
+                max-width: 50%;        
+            }
+
+            #resurce .plus {
+                vertical-align: middle;
+                font-size: 2em;
+                font-weight: bold;
+                padding: 0 2rem;
+            }
+
+            #resurce .modenr-tool-title {
+                width: 50%;
+            }
+
+            #resurce .modenr-tool-title img {
+                display: inline-block;
+                vertical-align: middle;
+                width: 100px;
+            }
+            
+            .h3 {
+                font-size: 1.17em;
+                font-weight: bold;
+            }
+        </style>
     </section>
 
-    <section class="slide">
-        <h2>Two columns if you like</h2>
+    <section class="slide" id="http">
+        <h2>Протоколы передачи данных</h2>
         <div class="columns two">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
@@ -161,9 +200,6 @@
         <h2>Pictures</h2>
         <figure>
             <img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
-            <figcaption class="copyright right white">
-                <a href="http://fiftyfootshadows.net/">© John Carey</a>
-            </figcaption>
         </figure>
         <style>
             #picture h2 {
