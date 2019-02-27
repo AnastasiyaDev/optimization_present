@@ -58,7 +58,7 @@
     </section>
 
     <section class="slide" id="why">
-        <h2>Почему мы все здесь?</h2>
+        <h2>Что происходит?</h2>
 
         <figure>
             <img class="place bottom left" src="pictures/not-sure.jpg" alt="not-sure">
@@ -93,6 +93,7 @@
                 font-size: 2em;
                 font-weight: bold;
                 padding: 0 2rem;
+                color: #192231;
             }
 
             #resurce .modenr-tool-title {
@@ -114,26 +115,95 @@
 
     <section class="slide" id="http">
         <h2>Протоколы передачи данных</h2>
-        <div class="columns two">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-        </div>
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>HTTP1.1</th>
+                <th>HTTP2</th>
+            </tr>
+            <tr>
+                <th scope="row">head-of-line blocking</th>
+                <td>не больше 6ти запросов за раз</td>
+                <td>мультиплексирование + приоритезация</td>
+            </tr>
+            <tr>
+                <th scope="row">uncompressed headers</th>
+                <td>сервер сжимает только тело запроса, но&nbsp;не&nbsp;заголовки</td>
+                <td>HPACK</td>
+            </tr>
+            <tr>
+                <th scope="row">nonsecure websites</th>
+                <td>серверы не обязаны использовать&nbsp;SSL</td>
+                <td>использует SSL-соединения</td>
+            </tr>
+            <tr>
+                <th scope="row">тип протокола</th>
+                <td>текстовый</td>
+                <td>бинарный</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>SERVER PUSH (nginx 1.13.9)</td>
+            </tr>
+            </table>
+
+            <style>
+                #http td {
+                    font-size: .8em;
+                }
+
+                #http th {
+                    line-height: 1.4;
+                }
+            </style>
     </section>
 
     <section class="slide">
-        <h2>All kind of lists</h2>
-        <ol>
-            <li>Simple lists are marked with bullets</li>
-            <li>Ordered lists begin with a number</li>
-            <li>You can even nest lists one inside another
-                <ul>
-                    <li>Or mix their types</li>
-                    <li>But do not go too far</li>
-                    <li>Otherwise audience will be bored</li>
-                </ul>
-            </li>
-            <li>Look, seven rows exactly!</li>
-        </ol>
+        <h2>Антипаттерны оптимизации для HTTP/2</h2>
+        <ul>
+            <li class="next">Bundling CSS and JavaScript</li>
+            <li class="next">Image sprites</li>
+            <li class="next">Asset inlining</li>
+        </ul>
+
+        <p class="next"><strong>Ухудшается эффективность кэшировая</strong></p>
+
+        <ul>
+            <li class="next">Domain Sharding</li>
+        </ul>
+    </section>
+
+    <section class="slide" id="http2">
+        <h2>Можно ничего не делать</h2>
+        
+        <figure>
+            <img class="place center center" src="pictures/http2.png" alt="http2">
+        </figure>
+
+        <style>
+            #http2 {
+                background-color: #f5f7f9;
+            }
+
+            #http2 img {
+                max-width: 280px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="render">
+        <h2>Как браузер рендерит страницу</h2>
+        
+        <figure>
+            <img class="place center center" src="pictures/rendering.PNG" alt="render">
+        </figure>
+
+        <style>
+            #render img {
+                max-width: 82%;
+            }
+        </style>
     </section>
 
     <section class="slide">
