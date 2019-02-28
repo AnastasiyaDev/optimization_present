@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Оптимизация и все такое</title>
+    <title>Пути Оптимизации неисповедимы</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
@@ -25,20 +25,24 @@
 <body class="shower list">
 
     <header class="caption">
-        <h1>Оптимизация и все такое</h1>
+        <h1>Пути Оптимизации неисповедимы</h1>
         <p>Ася Бахнарь</p>
     </header>
 
-    <section class="slide" id="cover">
-        <h2>Оптимизация и все такое</h2>
-        <p>Brought to you by Asya Bakhnar</p>
+    <section class="slide clear" id="cover">
+        <h2>Viae Optimization imperceptae sunt</h2>
+        <p class="subtitle">
+            <span >(Пути Оптимизации неисповедимы)</span>
+        </div>
+
+        <p class="note">Brought to you by Asya Bakhnar</p>
 
         <style>
             #cover h2 {
                 margin: 30px 0 0;
                 color: black;
                 text-align: center;
-                font-size: 70px;
+                font-size: 63px;
             }
 
             #cover p {
@@ -46,13 +50,14 @@
                 bottom: 0;
                 right: 50px;
                 text-align: center;
-                color: black;
                 font-style: italic;
                 font-size: 20px;
             }
 
-            #cover::after {
-                visibility: hidden;
+            #cover .subtitle {
+                position: relative;
+                text-align: right;
+                font-size: 34px;
             }
         </style>
     </section>
@@ -206,8 +211,35 @@
         </style>
     </section>
 
+    <section class="slide" id="layer">
+        <h2>Слой (композитный слой)</h2>
+
+        <p class="note">&mdash; часть страницы, поддерево DOM. Отрисовывается независимо, компонуется в GPU</p>
+
+        <ul>
+            <li class="next"> Элементы с 3D-трансформацией (translateZ hack - transform: translateZ(0);)</li>
+            <li class="next">&lt;video&gt; с включенным h/a (Hardware acceleration)</li>
+            <li class="next">&lt;canvas&gt; с 3D или 2D с включенным h/a</li>
+            <li class="next">Плагины (flash, silverlight)</li>
+            <li class="next">CSS фильтры</li>
+            <li class="next">Элементы, вынесенные над композитным слоем (т.е. z-index)</li>
+            <li class="next">will-change</li>
+        </ul>
+
+        <style>
+            #layer pre {
+                display: inline-block;
+            }
+
+            #layer .note {
+                font-size: 22px;
+                line-height: 1;
+            }
+        </style>
+    </section>
+
     <section class="slide">
-        <h2>Serious citations</h2>
+        <h2>Метрики загрузки страницы</h2>
         <figure>
             <blockquote>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
