@@ -217,7 +217,7 @@
         <p class="note">&mdash; часть страницы, поддерево DOM. Отрисовывается независимо, компонуется в GPU</p>
 
         <ul>
-            <li class="next"> Элементы с 3D-трансформацией (translateZ hack - transform: translateZ(0);)</li>
+            <li class="next">Элементы с 3D-трансформацией (translateZ hack - transform: translateZ(0);)</li>
             <li class="next">&lt;video&gt; с включенным h/a (Hardware acceleration)</li>
             <li class="next">&lt;canvas&gt; с 3D или 2D с включенным h/a</li>
             <li class="next">Плагины (flash, silverlight)</li>
@@ -241,11 +241,72 @@
     <section class="slide">
         <h2>Метрики загрузки страницы</h2>
         <figure>
-            <blockquote>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-            </blockquote>
-            <figcaption>Marcus Tullius Cicero</figcaption>
+            <img class="place center center" src="pictures/metric.png" alt="metric">
         </figure>
+    </section>
+
+    <section class="slide">
+        <h2>Прогрессивные веб-метрики (ПВМ)</h2>
+        <figure>
+            <img class="place center bottom" src="pictures/performance-metrics.png" alt="performance-metrics">
+        </figure>
+    </section>
+
+    <section class="slide">
+        <h2>Инструменты</h2>
+
+        <ul>
+            <li class="next"><a href="https://developers.google.com/speed/pagespeed/insights/">Google PageSpeed Insight</a></li>
+            <li class="next"><a href="https://tools.pingdom.com/">pingdom</a></li>
+            <li class="next">Lighthouse (таба Audits)</li>
+            <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
+            <li class="next">Google Chrome’s devTools</li>
+        </ul>
+    </section>
+
+    <section class="slide" id="fps">
+        <h2>Performance</h2>
+
+        <ul>
+            <li>FPS<br><a class="next" href="http://jakearchibald.github.io/jank-invaders/"><small>Jank-эффект</small></a></li>
+        </ul>
+
+        <figure>
+            <img class="place right bottom next" src="pictures/60-fps.jpg" alt="60-fps">
+        </figure>
+
+        <ul>
+            <li class="next">Network</li>
+            <li class="next">CPU</li>
+            <li class="next">Frame</li>
+            <li class="next">Main</li>
+            <li class="next">Raster</li>
+        </ul>
+
+        <style>
+            #fps {
+                background-color: #000;
+            }
+
+            #fps li {
+                color: white;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>User Timing</h2>
+
+        <code>window.performance.mark('my_mark');</code>
+        <code>window.performance.measure('u text', 'domComplete', 'my_mark');</code>
+
+        <br>Посмотреть события - <a href="https://developer.mozilla.org/ru/docs/Web/API/Navigation_timing_API">PerformanceTiming</a>
+
+        <div class="next">
+            <span>Посмотреть все метки и замеры:</span><br>
+            <code>performance.getEntriesByType('mark');</code>
+            <code>performance.getEntriesByType('measure');</code>  
+        </div>
     </section>
 
     <section class="slide">
