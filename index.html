@@ -309,6 +309,278 @@
         </div>
     </section>
 
+    <section class="slide" id="opt_res">
+        <h2>Оптимизация ресурсов</h2>
+        <h4>Минимизация</h4>
+
+        <code>
+            npm i -g minifier html-minify
+        </code>
+
+        <mark class="important">minifier deprecated</mark>
+
+        <ul>
+            <li><span>HTML</span>, <code>htmlminify -o index.html index.src.html</code></li>
+            <li><span>CSS</span>, <code>minify -o ./css/styles.min.css ./css/styles.css</code></li>
+            <li><span>JS</span>, <code>minify -o jquery.min.js jquery.js</code></li>
+            <li><span>Images</span></li>
+        </ul>
+
+        <style>
+            #opt_res li span {
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="opt_img">
+        <h2>Оптимизация картинок</h2>
+
+        <ul>
+            <li><a href="https://imageoptim.com">ImageOptim</a></li>
+            <li><a href="https://tinypng.com/">tinypng</a></li>
+            <li><a href="https://squoosh.app">squoosh</a></li>
+        </ul>
+
+        <figure>
+            <img class="place center bottom next" src="pictures/shakal_c.jpg" alt="shakal">
+        </figure>
+
+
+        <style>
+            #opt_img img {
+                max-width: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="resp_img">
+        <h2>Отзывчивые картинки</h2>
+
+        <ul>
+            <li>Не респонсивный вариант<br>
+                <pre><code>&lt;img src="img/xsmall.jpg" class="articleImageFull"
+     srcset="img/small.jpg 512w, img/medium.jpg 768w, img/large.jpg 1280w"
+     sizes="(min-width:  704px) 50vw,  (min-width:  480px) 75vw, 100vw"&gt;</code>
+                </pre>
+            </li>
+            <li><code>picture</code> + picturefill (для IE)<br>
+                <pre class="small"><code>&lt;picture&gt;
+  &lt;source srcset="banner_m.jpg, banner_m@2x.jpg 2x" media="(max-width: 768px)"&gt;
+  &lt;source srcset="banner_t.jpg, banner_t@2x.jpg 2x" media="screen and (min-width: 768px) and (max-width: 1024px)"&gt;
+  &lt;source srcset="banner.jpg, banner@2x.jpg 2x" media="screen and (min-width: 1025px)"&gt;
+  &lt;img srcset="banner.jpg" alt=""&gt;
+&lt;/picture></code>
+                </pre>
+            </li>
+        </ul>
+
+        <style>
+            #resp_img pre {
+                font-size: .7em;
+            }
+
+            #resp_img pre.small {
+                font-size: .6em;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="svg">
+        <h2>SVG</h2>
+
+        <ul>
+            <li class="next"><code>npm i -g svgo</code></li>
+            <li class="next"><a href="https://imageoptim.com">ImageOptim</a></li>
+            <li class="next"><a href="https://jakearchibald.github.io/svgomg/">svgomg</a></li>
+            <li class="next">ручками</li>
+        </ul>
+
+        <h3 class="next">Не важно как, главное убрать лишнее!</h3>
+    </section>
+
+    <section class="slide" id="webP">
+        <img class="" src="pictures/webp-support.png" alt="webp support">
+
+        <div style="text-align: right">
+            <a href="https://pastebin.com/">Конвектор</a>
+        </div>
+
+        <pre><code>&lt;picture&gt;
+    &lt;source srcset="img/amp-small.webp" type="image/webp"&gt;
+    &lt;img src="img/amp-small.jpg"&gt;
+&lt;/picture&gt;
+        </code>
+        </pre>
+
+        <style>
+            #webP img {
+                display: block;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            #webP pre {
+                font-size: .8em;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="webPChart">
+        <h2>WebP в сравнении с JPEG и PNG</h2>
+
+        <figure>
+            <img class="place center left" src="pictures/webp-chart-1.png" alt="">
+        </figure>
+
+        <figure>
+            <img class="place center right" src="pictures/webp-chart-2.png" alt="">
+        </figure>
+
+        <style>
+            #webPChart img {
+                max-width: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="fonts">
+        <h2>Шрифты</h2>
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>Extension</th>
+                <th>Browser support</th>
+            </tr>
+            <tr>
+                <th scope="row">TrueType</th>
+                <td>ttf</td>
+                <td>Все, кроме IE8-</td>
+            </tr>
+            <tr>
+                <th scope="row">OpenType</th>
+                <td>eot</td>
+                <td>IE6+</td>
+            </tr>
+            <tr>
+                <th scope="row">WOFF</th>
+                <td>woff</td>
+                <td>Все, кроме Android Browser 4.3- и IE8-</td>
+            </tr>
+            <tr>
+                <th scope="row">WOFF2</th>
+                <td>woff2</td>
+                <td>Все современные, кроме IE</td>
+            </tr>
+        </table>
+        <p>Для конвертации: <code>npm i -g ttf2eot ttf2woff ttf2woff2</code></p>
+    </section>
+
+    <section class="slide" id="fontsCascade">
+        <h2>@font-face cascade</h2>
+
+        <pre>
+            <code>@font-face {</code>
+            <code>    font-family: "Open Sans Light";</code>
+            <code>    font-weight: 300;</code>
+            <code>    font-style: normal;</code>
+            <code>    src: local("Open Sans Extra Light"),</code>
+            <code>         local("OpenSans-Light"),</code>
+            <code>         url("open-sans/OpenSans-Light.woff2") format("woff2"),</code>
+            <code>         url("open-sans/OpenSans-Light.woff") format("woff"),</code>
+            <code>         url("open-sans/OpenSans-Light.eot") format("embedded-opentype"),</code>
+            <code>         url("open-sans/OpenSans-Light.ttf") format("truetype");</code>
+            <code>}</code>
+        </pre>
+
+        <style>
+            #fontsCascade pre {
+                font-size: .7em;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Загрузка шрифтов</h2>
+
+        <ul>
+            <li>FOIT (Flash of Invisible Text) — «мелькание невидимого текста»</li>
+            <li>FOUT (Flash of Unstyled Text) — «мелькание неоформленного текста»</li>
+        </ul>
+
+        <p>
+            Internet Explorer и Edge используют FOUT и отображают запасные шрифты, пока веб-шрифт не закончит свою
+            загрузку. Все остальные браузеры используют FOIT и прячут текст во время загрузки веб-шрифтов.
+        </p>
+    </section>
+
+    <section class="slide" id="fontDisplay">
+        <h3><code>font-display</code></h3>
+
+        <ul>
+            <li><code>auto</code> — обычно это поведение <code>block</code></li>
+            <li><code>block</code> — короткий период блокировки (3 секунды) и&nbsp;бесконечный период замены</li>
+            <li><code>swap</code> — короткий период блокировки (3 секунды) и&nbsp;бесконечный период замены</li>
+            <li><code>fallback</code> — очень короткий период блокировки (100 мс или меньше) и&nbsp;короткий период замены (3 секунды)</li>
+            <li><code>optional</code> —  очень короткий период блокировки (100 мс или меньше) и&nbsp;период замены в 0 секунды.</li>
+        </ul>
+
+        <style>
+            #fontDisplay ul {
+                line-height: 1.6;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="js">
+        <h2>Выполнение JS</h2>
+
+        <img class="" src="pictures/js-default.png" alt="js-default">
+
+        <div>
+            <strong>async</strong>
+            <img class="" src="pictures/js-async.png" alt="js-async">
+        </div>
+
+        <div>
+            <strong>defer</strong>
+            <img class="" src="pictures/js-defer.png" alt="js-defer">
+        </div>
+
+
+        <style>
+            #js h2 {
+                margin-bottom: 0;
+            }
+
+            #js img {
+                max-width: 100%;
+                padding-bottom: 10px;
+            }
+
+            #js div {
+                position: relative;
+            }
+
+            #js strong {
+                position: absolute;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="css">
+        <h2>CSS</h2>
+
+
+        <style>
+            #css {
+
+            }
+        </style>
+    </section>
+
+
     <section class="slide">
         <h2>Code samples</h2>
         <pre>
@@ -406,7 +678,5 @@
     <div class="progress"></div>
 
     <script src="node_modules/shower-core/shower.min.js"></script>
-    <!-- Copyright © 2019 Asya Bakhnar, Famous Inc. -->
-
 </body>
 </html>
