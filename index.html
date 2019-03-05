@@ -33,7 +33,7 @@
         <h2>Viae Optimization imperceptae sunt</h2>
         <p class="subtitle">
             <span >(Пути Оптимизации неисповедимы)</span>
-        </div>
+        </p>
 
         <p class="note">Brought to you by Asya Bakhnar</p>
 
@@ -569,20 +569,75 @@
         </style>
     </section>
 
-    <section class="slide" id="css">
+    <section class="slide">
         <h2>CSS</h2>
 
+        <ul>
+            <li>DRY (don’t repeat yourself).</li>
+            <li>Писать сокращенными правилами (padding, margin, font).</li>
+            <li>Не усложнять селекторы, чем вложенность меньше, тем лучше ( <= 3 ).</li>
+            <li>Грузить только те стили, которые нужны на конкретной странице.</li>
+            <li>Стараться не использовать @import в CSS (именно в CSS). </li>
+            <li><code>&lt;link&gt;</code> должны быть в <code>&lt;head&gt;</code>.</li>
+            <li>CSS transition быстрее, чем Query animate().</li>
+        </ul>
+    </section>
+
+    <section class="slide" id="cssSelectors">
+        <h2>The performance of the CSS selector</h2>
+
+        <img class="" src="pictures/css-selectors.png" alt="css-selectors">
 
         <style>
-            #css {
-
+            #cssSelectors h2 {
+                margin-bottom: 0;
+            }
+            #cssSelectors img {
+                max-width: 64%;
             }
         </style>
     </section>
 
+    <section class="slide" id="cssRender">
+        <h2>Этапы рендеринга CSS-свойств</h2>
+
+        <figure>
+            <img class="pipeline" src="pictures/pipelineForFrames.PNG" alt="pipeline css render">
+        </figure>
+
+        <p class="next">
+            BRO: <code>transform</code>, <code>opacity</code> и <code>filter</code> - пропускают этапы <strong>Layout</strong> и <strong>Paint</strong>, обработаны напрямую через GPU.
+        </p>
+
+        <p class="next">
+            <a class="csstriggers-link" href="https://csstriggers.com/">csstriggers</a>
+        </p>
+
+        <img class="place center bottom next" src="pictures/csstriggers.png" alt="csstriggers">
+
+        <style>
+            #cssRender img.pipeline {
+                max-width: 100%;
+                padding-bottom: 20px;
+            }
+
+            #cssRender img.place {
+                max-width: 60%;
+            }
+
+            #cssRender p {
+                font-size: .9em;
+            }
+
+            #cssRender .csstriggers-link {
+                transform: translateY(82px) rotate(-90deg);
+                display: inline-block;
+            }
+        </style>
+    </section>
 
     <section class="slide">
-        <h2>Code samples</h2>
+        <h2>Ресурсные подсказки и директивы (Resource Hints)</h2>
         <pre>
             <code>&lt;!DOCTYPE html&gt;</code>
             <code class="mark">&lt;html lang="en"&gt;</code>
