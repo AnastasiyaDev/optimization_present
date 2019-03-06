@@ -201,7 +201,7 @@
         <h2>Как браузер рендерит страницу</h2>
         
         <figure>
-            <img class="place center center" src="pictures/rendering.PNG" alt="render">
+            <img class="place center center" src="pictures/rendering.png" alt="render">
         </figure>
 
         <style>
@@ -294,6 +294,12 @@
         </style>
     </section>
 
+    <section class="slide clear" id="ploho">
+        <figure>
+            <img class="cover" src="pictures/ploho.png" alt="">
+        </figure>
+    </section>
+
     <section class="slide">
         <h2>User Timing</h2>
 
@@ -307,6 +313,10 @@
             <code>performance.getEntriesByType('mark');</code>
             <code>performance.getEntriesByType('measure');</code>  
         </div>
+    </section>
+
+    <section class="slide clear">
+        <h2 class="shout shrink">Фронтовая оптимизация</h2>
     </section>
 
     <section class="slide" id="opt_res">
@@ -602,7 +612,7 @@
         <h2>Этапы рендеринга CSS-свойств</h2>
 
         <figure>
-            <img class="pipeline" src="pictures/pipelineForFrames.PNG" alt="pipeline css render">
+            <img class="pipeline" src="pictures/pipelineForFrames.png" alt="pipeline css render">
         </figure>
 
         <p class="next">
@@ -636,96 +646,120 @@
         </style>
     </section>
 
-    <section class="slide">
-        <h2>Ресурсные подсказки и директивы (Resource Hints)</h2>
-        <pre>
-            <code>&lt;!DOCTYPE html&gt;</code>
-            <code class="mark">&lt;html lang="en"&gt;</code>
-            <code><mark>&lt;head&gt;</mark> <span class="comment">&lt;!--Comment--&gt;</span></code>
-            <code>    &lt;title&gt;Shower&lt;/title&gt;</code>
-            <code>    &lt;meta charset="<mark class="important">UTF-8</mark>"&gt;</code>
-            <code>    &lt;link rel="stylesheet" href="screen.css"&gt;</code>
-            <code><mark>&lt;/head&gt;</mark></code>
-        </pre>
-    </section>
+    <section class="slide" id="resourceHints">
+        <h2>Ресурсные подсказки (Resource Hints)</h2>
 
-    <section class="slide">
-        <h2>Even tables</h2>
-        <table>
-        <tr>
-            <th scope="col">Locavore</th>
-            <th>Umami</th>
-            <th>Helvetica</th>
-            <th>Vegan</th>
-        </tr>
-        <tr>
-            <th scope="row">Fingerstache</th>
-            <td>Kale</td>
-            <td>Chips</td>
-            <td>Keytar</td>
-        </tr>
-        <tr>
-            <th scope="row">Sriracha</th>
-            <td>Gluten-free</td>
-            <td>Ennui</td>
-            <td>Keffiyeh</td>
-        </tr>
-        <tr>
-            <th scope="row">Thundercats</th>
-            <td>Jean</td>
-            <td>Shorts</td>
-            <td>Biodiesel</td>
-        </tr>
-        <tr>
-            <th scope="row">Terry</th>
-            <td>Richardson</td>
-            <td>Swag</td>
-            <td>Blog</td>
-        </tr>
-        </table>
-        <p>It’s good to have information organized.</p>
-    </section>
+        <ul>
+            <li><strong>Dns-prefetch</strong> &mdash; устанавливает DNS, TCP, TLS связь</li>
+            <li><strong>Preconnect</strong> &mdash; браузер преобразует имя домена в IP адрес в фоне</li>
+            <li><strong>Prefetch</strong> &mdash; браузер загрузит его с низким приоритетом и положит в кэш (можно запросить активы с другой страницы)</li>
+            <li><strong>Subresource</strong> &mdash; то же самое что и <strong>Prefetch</strong>, только с высоким приоритетом</li>
+            <li><strong>Preload</strong> &mdash; то же самое что и <strong>Prefetch</strong>, но браузер всегда загрузит ресурс</li>
+            <li><strong>Prerender</strong> &mdash; заранее загружает ресурс/страницу и всё содержимое в фоне</li>
+        </ul>
 
-    <section class="slide" id="picture">
-        <h2>Pictures</h2>
-        <figure>
-            <img class="cover" src="pictures/picture.jpg" alt="Orange typewriter on a wooden table close-up">
-        </figure>
+        <code>&lt;link rel="preload" href="https://olololo.ru/jquery.min.js" as="script"&gt;</code>
+
         <style>
-            #picture h2 {
-                color: white;
+            #resourceHints li {
+                line-height: 1.55;
             }
         </style>
     </section>
 
-    <section class="slide">
-        <h2 class="shout shrink">You can even shout this way</h2>
+    <section class="slide clear">
+        <h2 class="shout shrink">Серверная оптимизация</h2>
     </section>
 
     <section class="slide">
-        <h2>Inner navigation</h2>
-        <ol>
-            <li>Lets you reveal list items one by one</li>
-            <li class="next">To keep some key points</li>
-            <li class="next">In secret from audience</li>
-            <li class="next">But it will work only once</li>
-            <li class="next">Nobody wants to see the same joke twice</li>
-        </ol>
+        <h2>Нужны админы. Или нет?</h2>
+
+        <ul>
+            <li><a href="https://www.modpagespeed.com/doc/">Google mod_pagespeed</a></li>
+            <li><a href="https://www.cloudflare.com/">Cloudflare</a> - по дефолту подключен на лореали</li>
+        </ul>
+
+        <p>
+            <a href="https://support.cloudflare.com/hc/en-us/articles/200169486-Is-CloudFlare-compatible-with-mod-pagespeed">Пишут</a> что у
+            <strong>Google mod_pagespeed</strong> и <strong>Cloudflare</strong> нет конфликтов
+        </p>
+
+        <h2 class="next">Админы нужны.</h2>
     </section>
 
-    <section class="slide" id="see-more">
+    <section class="slide">
+        <h2>CDN</h2>
+        <figure>
+            <blockquote>
+                <p>Стоит отказаться от доменного шардинга. Такой способ распределения множества файлов по различным доменам и CDN актуален для HTTP 1.1, так как решает проблему параллельных соединений. Но в случае с новым протоколом такое решение ухудшает производительность и нивелирует приоритизацию трафика..</p>
+            </blockquote>
+            <figcaption><a href="https://ruhighload.com/%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B2+http%2F2">Оптимизация в HTTP/2</a></figcaption>
+        </figure>
+
+        <h3>
+            для мобилки &mdash; <code>7-17</code>,&nbsp;&nbsp;для десктопа &mdash; <code>4-6</code>
+        </h3>
+    </section>
+
+    <section class="slide clear">
+        <h2 class="shout shrink">Best practices</h2>
+    </section>
+
+    <section class="slide" id="best">
+        <ul>
+            <li class="next">Использовать <code>rel="noopener"</code> для ссылок на внешние ресурсы с <code>target="_blank"</code></li>
+            <li class="next">В JS <code>read-write-write-write</code></li>
+            <li class="next"><code>-webkit-line-clamp: 3;</code><br>
+                <img class="truncate" src="/pictures/truncate.png" alt="truncate">
+            </li>
+        </ul>
+
+        <style>
+            #best .truncate {
+                max-width: 80%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="best2">
+        <ul>
+            <li class="next"><strong>lazyload</strong> на картинках и на блоках не попадающих во вьюпорт (карусели с продуктами)</li>
+            <li class="next">Сборка Cerave на М2</li>
+            <li class="next">еще что-то, слишком поздно уже, не могу вспомнить...</li>
+        </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Использовать <code>&lt;picture&gt;</code></h2>
+
+        <ul>
+            <li>Для баннеров на главной</li>
+            <li>Не только на главной</li>
+            <li>(Не только для баннеров)</li>
+        </ul>
+
+        <p>
+            <a href="https://kerastase.ru/blond-absolu-landing">Пример</a>
+        </p>
+
+        <p>
+            Что надо бы сделать: или запилить таску с <a href="https://www.npmjs.com/package/gulp-responsive">gulp-responsive</a> или скрипт с
+            <a href="http://www.imagemagick.org/script/download.php">ImageMagick</a>
+        </p>
+    </section>
+
+    <section class="slide clear" id="see-more">
         <h2 class="shout">
-            <img src="pictures/logo.svg" alt="Shower logo">
-            <a href="https://github.com/shower/shower">See more on GitHub</a>
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">See more on GitHub</a>
         </h2>
         <style>
             #see-more h2 {
-                font-size: 100px
+                font-size: 100px;
             }
 
-            #see-more img {
-                width: 0.72em;
-                height: 0.72em;
+            #see-more a {
+                background-image: linear-gradient( to top, rgb(0, 0, 0) .06em, transparent .06em );
+                color: black;
             }
         </style>
     </section>
