@@ -129,7 +129,7 @@
             <tr>
                 <th scope="row">head-of-line blocking</th>
                 <td>не больше 6ти запросов за раз</td>
-                <td>мультиплексирование + приоритезация</td>
+                <td>мультиплексирование + приоритезация потоков</td>
             </tr>
             <tr>
                 <th scope="row">uncompressed headers</th>
@@ -217,13 +217,13 @@
         <p class="note">&mdash; часть страницы, поддерево DOM. Отрисовывается независимо, компонуется в GPU</p>
 
         <ul>
-            <li class="next">Элементы с 3D-трансформацией (translateZ hack - transform: translateZ(0);)</li>
-            <li class="next">&lt;video&gt; с включенным h/a (Hardware acceleration)</li>
-            <li class="next">&lt;canvas&gt; с 3D или 2D с включенным h/a</li>
+            <li class="next">Эл-ты с 3D-трансформацией (translateZ hack - <code>transform: translateZ(0)</code>)</li>
+            <li class="next"><code>&lt;video&gt;</code>с включенным h/a (Hardware acceleration)</li>
+            <li class="next"><code>&lt;canvas&gt;</code> с 3D или 2D с включенным h/a</li>
             <li class="next">Плагины (flash, silverlight)</li>
             <li class="next">CSS фильтры</li>
-            <li class="next">Элементы, вынесенные над композитным слоем (т.е. z-index)</li>
-            <li class="next">will-change</li>
+            <li class="next">Элементы, вынесенные над композитным слоем (т.е. <code>z-index</code>)</li>
+            <li class="next"><code>will-change</code></li>
         </ul>
 
         <style>
@@ -234,6 +234,10 @@
             #layer .note {
                 font-size: 22px;
                 line-height: 1;
+            }
+
+            #layer code {
+                font-size: .8em;
             }
         </style>
     </section>
@@ -260,7 +264,7 @@
             <li class="next"><a href="https://tools.pingdom.com/">pingdom</a></li>
             <li class="next">Lighthouse (таба Audits)</li>
             <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
-            <li class="next">Google Chrome’s devTools</li>
+            <li class="next">Google Chrome’s devTools (таба Network, Performance, ...)</li>
         </ul>
     </section>
 
@@ -324,15 +328,13 @@
         <h4>Минимизация</h4>
 
         <code>
-            npm i -g minifier html-minify
+            npm i -g uglify csso html-minify
         </code>
 
-        <mark class="important">minifier deprecated</mark>
-
         <ul>
-            <li><span>HTML</span>, <code>htmlminify -o index.html index.src.html</code></li>
-            <li><span>CSS</span>, <code>minify -o ./css/styles.min.css ./css/styles.css</code></li>
-            <li><span>JS</span>, <code>minify -o jquery.min.js jquery.js</code></li>
+            <li><span>HTML</span>, <code>htmlminify</code></li>
+            <li><span>CSS</span>, <code>csso</code></li>
+            <li><span>JS</span>, <code>uglify</code></li>
             <li><span>Images</span></li>
         </ul>
 
@@ -370,9 +372,7 @@
 
         <ul>
             <li>Не респонсивный вариант<br>
-                <pre><code>&lt;img src="img/xsmall.jpg" class="articleImageFull"
-     srcset="img/small.jpg 512w, img/medium.jpg 768w, img/large.jpg 1280w"
-     sizes="(min-width:  704px) 50vw,  (min-width:  480px) 75vw, 100vw"&gt;</code>
+                <pre><code>&lt;img srcset="simple@2x.png 2x, simple.png 1x" src="simple.png" alt=""&gt;</code>
                 </pre>
             </li>
             <li><code>picture</code> + picturefill (для IE)<br>
@@ -408,6 +408,30 @@
         </ul>
 
         <h3 class="next">Не важно как, главное убрать лишнее!</h3>
+    </section>
+
+    <section class="slide" id="badSVG">
+        <figure>
+            <img class="cover" src="pictures/bad-svg.png" alt="badSVG">
+        </figure>
+
+        <style>
+            #badSVG {
+                background-color: #3a3f41;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="goodSVG">
+        <figure>
+            <img class="cover" src="pictures/good-svg.png" alt="goodSVG">
+        </figure>
+
+        <style>
+            #goodSVG {
+                background-color: #3a3f41;
+            }
+        </style>
     </section>
 
     <section class="slide" id="webP">
@@ -457,34 +481,54 @@
 
     <section class="slide" id="fonts">
         <h2>Шрифты</h2>
-        <table>
-            <tr>
-                <th scope="col"></th>
-                <th>Extension</th>
-                <th>Browser support</th>
-            </tr>
-            <tr>
-                <th scope="row">TrueType</th>
-                <td>ttf</td>
-                <td>Все, кроме IE8-</td>
-            </tr>
-            <tr>
-                <th scope="row">OpenType</th>
-                <td>eot</td>
-                <td>IE6+</td>
-            </tr>
-            <tr>
-                <th scope="row">WOFF</th>
-                <td>woff</td>
-                <td>Все, кроме Android Browser 4.3- и IE8-</td>
-            </tr>
-            <tr>
-                <th scope="row">WOFF2</th>
-                <td>woff2</td>
-                <td>Все современные, кроме IE</td>
-            </tr>
-        </table>
+
+        <div class="red-line-w">
+            <table>
+                <tr>
+                    <th scope="col"></th>
+                    <th>Extension</th>
+                    <th>Browser support</th>
+                </tr>
+                <tr>
+                    <th scope="row">TrueType</th>
+                    <td>ttf</td>
+                    <td>Все, кроме IE8-</td>
+                </tr>
+                <tr>
+                    <th scope="row">OpenType</th>
+                    <td>eot</td>
+                    <td>IE6+</td>
+                </tr>
+                <tr>
+                    <th scope="row">WOFF</th>
+                    <td>woff</td>
+                    <td>Все, кроме Android Browser 4.3- и IE8-</td>
+                </tr>
+                <tr>
+                    <th scope="row">WOFF2</th>
+                    <td>woff2</td>
+                    <td>Все современные, кроме IE</td>
+                </tr>
+            </table>
+            <div class="red-line next"></div>
+        </div>
+
         <p>Для конвертации: <code>npm i -g ttf2eot ttf2woff ttf2woff2</code></p>
+
+        <style>
+            #fonts .red-line-w {
+                position: relative;
+            }
+
+            #fonts .red-line {
+                position: absolute;
+                left: -5px;
+                top: 123px;
+                width: 55%;
+                height: 4px;
+                background-color: red;
+            }
+        </style>
     </section>
 
     <section class="slide" id="fontsCascade">
@@ -499,14 +543,13 @@
             <code>         local("OpenSans-Light"),</code>
             <code>         url("open-sans/OpenSans-Light.woff2") format("woff2"),</code>
             <code>         url("open-sans/OpenSans-Light.woff") format("woff"),</code>
-            <code>         url("open-sans/OpenSans-Light.eot") format("embedded-opentype"),</code>
             <code>         url("open-sans/OpenSans-Light.ttf") format("truetype");</code>
             <code>}</code>
         </pre>
 
         <style>
             #fontsCascade pre {
-                font-size: .7em;
+                font-size: .8em;
             }
         </style>
     </section>
@@ -584,7 +627,6 @@
 
         <ul>
             <li>DRY (don’t repeat yourself).</li>
-            <li>Писать сокращенными правилами (padding, margin, font).</li>
             <li>Не усложнять селекторы, чем вложенность меньше, тем лучше ( <= 3 ).</li>
             <li>Грузить только те стили, которые нужны на конкретной странице.</li>
             <li>Стараться не использовать @import в CSS (именно в CSS). </li>
@@ -609,11 +651,7 @@
     </section>
 
     <section class="slide" id="cssRender">
-        <h2>Этапы рендеринга CSS-свойств</h2>
-
-        <figure>
-            <img class="pipeline" src="pictures/pipelineForFrames.png" alt="pipeline css render">
-        </figure>
+        <h2>Рендеринг CSS-свойств</h2>
 
         <p class="next">
             BRO: <code>transform</code>, <code>opacity</code> и <code>filter</code> - пропускают этапы <strong>Layout</strong> и <strong>Paint</strong>, обработаны напрямую через GPU.
@@ -626,15 +664,6 @@
         <img class="place center bottom next" src="pictures/csstriggers.png" alt="csstriggers">
 
         <style>
-            #cssRender img.pipeline {
-                max-width: 100%;
-                padding-bottom: 20px;
-            }
-
-            #cssRender img.place {
-                max-width: 60%;
-            }
-
             #cssRender p {
                 font-size: .9em;
             }
