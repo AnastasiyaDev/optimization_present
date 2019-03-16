@@ -79,7 +79,7 @@
 
     <section class="slide" id="resurce">
         <figure>
-            <img class="place bottom left" src="pictures/book.jpg" alt="not-sure">
+            <img class="place bottom left" src="pictures/book.jpg" alt="Web Performance in Action">
         </figure>
 
         <p class="place right center modenr-tool-title">
@@ -175,8 +175,11 @@
         <p class="next"><strong>Ухудшается эффективность кэшировая</strong></p>
 
         <ul>
-            <li class="next">Domain Sharding - способ распределения множества файлов по различным доменам и CDN 
-                <a href="https://ruhighload.com/%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B2+http%2F2">Оптимизация в HTTP/2</a>
+            <li class="next">Domain Sharding - способ распределения множества файлов по различным доменам и CDN
+                <br>
+                <a href="https://ruhighload.com/%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B2+http%2F2">Оптимизация в HTTP/2</a> 
+                  |   
+                <a href="https://docs.google.com/spreadsheets/d/1EPCxFe8KRubg87edb0s_3UyQgMeQENrFDu1uMPLt2W8/edit#gid=0">Таблица результатов для REDKEN</a>
             </li>
         </ul>
     </section>
@@ -208,7 +211,7 @@
 
         <style>
             #render img {
-                max-width: 82%;
+                max-width: 100%;
             }
         </style>
     </section>
@@ -267,6 +270,7 @@
             <li class="next">Lighthouse (таба Audits)</li>
             <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
             <li class="next">Google Chrome’s devTools (таба Network, Performance, ...)</li>
+            <li class="next"><a href="https://www.catchpoint.com/">catchpoint</a> (трек лореалей не на нашей стороне)</li>
             <li class="next"><a href="https://calibreapp.com/">Сalibreapp</a></li>
         </ul>
     </section>
@@ -330,10 +334,11 @@
                 <a href="https://www.npmjs.com/package/jquery.dotdotdot"><code>jquery.dotdotdot.js</code></a> 
                 deprecated -> <a href="https://www.npmjs.com/package/dotdotdot-js"><code>dotdotdot-js</code></a>
             </li>
-            <li class="next"><a href="https://www.npmjs.com/package/shave"><code>shave.js</code></a><br>
-                <img class="truncate" src="/pictures/truncate.png" alt="truncate">
+            <li class="next">
+                <a href="https://www.npmjs.com/package/shave"><code>shave.js</code></a>
+                <br>
+                <img class="truncate next" src="../pictures/truncate.png" alt="truncate">
             </li>
-            <li class="next"><code>-webkit-line-clamp: 3;</code></li>
         </ul>
 
         <style>
@@ -343,14 +348,43 @@
             }
 
             #truncate .truncate {
-                max-width: 80%;
+                max-width: 91%;
             }
 
             #truncate li {
-                font-size: .7em;
+                font-size: .8em;
             }
         </style>
-        </section>
+    </section>
+
+    <section class="slide" id="webkitLineClamp">
+        <h2><code>-webkit-line-clamp</code></h2>
+        
+        <figure>
+            <img class="place center" src="../pictures/line-clamp.png" alt="webkitLineClamp">
+        </figure>
+
+        <p class="place center bottom">
+            pageSpeed поднялся на <strong>2</strong> в мобилке и на <strong>6</strong> на десктопе
+        </p>
+
+        <style>
+            #webkitLineClamp h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: 1.2em;
+            }
+
+            #webkitLineClamp img {
+                max-width: 90%;
+            }
+
+            #webkitLineClamp p {
+                width: 90%;
+                text-align: center;
+            }
+        </style>
+    </section>
 
     <section class="slide clear" id="front">
         <h2 class="shout shrink">Фронтовая<br>оптимизация<br>ресурсов</h2>
@@ -439,6 +473,25 @@
         </style>
     </section>
 
+    <section class="slide">
+        <h2>Использование <code>&lt;picture&gt;</code></h2>
+
+        <ul>
+            <li>Для баннеров на главной</li>
+            <li>Не только на главной</li>
+            <li>(Не только для баннеров)</li>
+        </ul>
+
+        <p>
+            <a href="https://kerastase.ru/blond-absolu-landing">Пример на Kerastase</a>
+        </p>
+
+        <p>
+            Что надо бы сделать: или запилить таску с <a href="https://www.npmjs.com/package/gulp-responsive">gulp-responsive</a> или скрипт с
+            <a href="http://www.imagemagick.org/script/download.php">ImageMagick</a>
+        </p>
+    </section>
+
     <section class="slide" id="svg">
         <h2>SVG</h2>
 
@@ -519,6 +572,12 @@
                 max-width: 50%;
             }
         </style>
+    </section>
+
+    <section class="slide" id="lazyload">
+        <h2>lazyload</h2>
+
+        <p>на картинках и на блоках не попадающих во вьюпорт (карусели с продуктами)....</p>
     </section>
 
     <section class="slide" id="fonts">
@@ -615,11 +674,14 @@
 
         <ul>
             <li><code>auto</code> — обычно это поведение <code>block</code></li>
-            <li><code>block</code> — короткий период блокировки (3 секунды) и&nbsp;бесконечный период замены</li>
-            <li><code>swap</code> — короткий период блокировки (3 секунды) и&nbsp;бесконечный период замены</li>
-            <li><code>fallback</code> — очень короткий период блокировки (100 мс или меньше) и&nbsp;короткий период замены (3 секунды)</li>
-            <li><code>optional</code> —  очень короткий период блокировки (100 мс или меньше) и&nbsp;период замены в 0 секунды.</li>
         </ul>
+
+        <figure>
+            <img class="" src="pictures/font-display.png" alt="font-display vulues">
+            <figcaption class="copyright right">
+                <a href="https://telegra.ph/Optimiziruem-veb-s-Vitaliem-Fridmanom-shrifty-02-17">© Оптимизируем веб с Виталием Фридманом— шрифты</a>
+            </figcaption>
+        </figure>
 
         <style>
             #fontDisplay h2 {
@@ -628,6 +690,12 @@
 
             #fontDisplay ul {
                 line-height: 1.74;
+                font-size: 0.9em;
+                margin-bottom: 10px;
+            }
+
+            #fontDisplay img {
+                max-width: 85%;
             }
         </style>
     </section>
@@ -801,40 +869,7 @@
     </section>
 
     <section class="slide clear">
-        <h2 class="shout shrink">Best practices</h2>
-    </section>
-
-    <section class="slide" id="best">
-        <ul>
-            <li class="next">Использовать <code>rel="noopener"</code> для ссылок на внешние ресурсы с <code>target="_blank"</code></li>
-            <li class="next"><strong>lazyload</strong> на картинках и на блоках не попадающих во вьюпорт (карусели с продуктами)</li>
-            <li class="next">Сборка Cerave на М2</li>
-        </ul>
-
-        <style>
-            #best .truncate {
-                max-width: 80%;
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2>Использовать <code>&lt;picture&gt;</code></h2>
-
-        <ul>
-            <li>Для баннеров на главной</li>
-            <li>Не только на главной</li>
-            <li>(Не только для баннеров)</li>
-        </ul>
-
-        <p>
-            <a href="https://kerastase.ru/blond-absolu-landing">Пример</a>
-        </p>
-
-        <p>
-            Что надо бы сделать: или запилить таску с <a href="https://www.npmjs.com/package/gulp-responsive">gulp-responsive</a> или скрипт с
-            <a href="http://www.imagemagick.org/script/download.php">ImageMagick</a>
-        </p>
+        <h2 class="shout shrink">Сборка Cerave на&nbsp;М2</h2>
     </section>
 
     <section class="slide clear" id="see-more">
