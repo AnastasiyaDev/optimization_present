@@ -348,7 +348,7 @@
             }
 
             #truncate .truncate {
-                max-width: 91%;
+                max-width: 94%;
             }
 
             #truncate li {
@@ -435,12 +435,71 @@
             <img class="place center bottom next" src="pictures/shakal_c.jpg" alt="shakal">
         </figure>
 
-
         <style>
             #opt_img img {
                 max-width: 50%;
             }
         </style>
+    </section>
+
+    <section class="slide" id="opt_gif">
+        <h2>gif</h2>
+
+        <code>
+            ffmpeg -i 1-test.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
+        </code>
+
+        <table class="next">
+            <tr>
+                <th scope="col"></th>
+                <th>.gif</th>
+                <th>.mp4</th>
+            </tr>
+            <tr>
+                <th scope="row">размер</th>
+                <td>1.4 MB</td>
+                <td>118 КБ</td>
+            </tr>
+        </table>
+
+        <div class="next">
+            <span>Для оптимизации видео:</span>
+            <code>
+                ffmpeg -i input.mp4 -movflags faststart -acodec copy -vcodec copy output.mp4
+            </code>
+        </div>
+
+        <div class="copyright right next">
+            <a href="http://denis-zavgorodny.github.io/2017/01/30/mp4-web-optimizing/">© Оптимизация mp4 видео для быстрой загрузки</a>
+        </div>
+
+        <style>
+            #opt_gif img {
+                max-width: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="no_gif">
+        <figure>
+            <img class="cover" src="pictures/no_gif.jpg" alt="no_gif">
+
+            <figcaption class="copyright right">
+                <a href="https://www.youtube.com/watch?v=JPbFcQMyzaY">© Делайте из слона муху</a>
+            </figcaption>
+        </figure>
+
+        <style>
+            #no_gif {
+                background-color: #2f2f2f;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="mp4">
+        <figure>
+            <img class="cover" src="pictures/mp4.png" alt="mp4 поддержка">
+        </figure>
     </section>
 
     <section class="slide" id="resp_img">
@@ -577,7 +636,11 @@
     <section class="slide" id="lazyload">
         <h2>lazyload</h2>
 
-        <p>на картинках и на блоках не попадающих во вьюпорт (карусели с продуктами)....</p>
+        <ul>
+            <li><a href="https://github.com/dinbror/blazy">blazy</a> — на картинках не попадающих в область видимости (вьюпорт, первый экран)</li>
+            <li>ajax load — на блоках не попадающих во вьюпорт</li>
+            <li>Асинхронный CSS на <a href="https://www.laroche-posay.ru/">LRP</a></li>
+        </ul>
     </section>
 
     <section class="slide" id="fonts">
@@ -670,7 +733,7 @@
     </section>
 
     <section class="slide" id="fontDisplay">
-        <h2><code>font-display</code></h3>
+        <h2><code>font-display</code></h2>
 
         <ul>
             <li><code>auto</code> — обычно это поведение <code>block</code></li>
