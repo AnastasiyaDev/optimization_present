@@ -26,7 +26,7 @@
 
     <header class="caption">
         <h1>Пути Оптимизации неисповедимы</h1>
-        <p>Ася Бахнарь</p>
+        <p>Ася Бахнарь и Влад Слесаренко</p>
     </header>
 
     <section class="slide clear" id="cover">
@@ -35,7 +35,7 @@
             <span >(Пути Оптимизации неисповедимы)</span>
         </p>
 
-        <p class="note">Brought to you by Asya Bakhnar</p>
+        <p class="note">Ася Бахнарь и Влад Слесаренко</p>
 
         <style>
             #cover h2 {
@@ -86,6 +86,9 @@
             <span class="plus">+</span>
             <img src="pictures/modern-tools-logo.svg" alt="modern-tools-logo"/>
             <span class="h3">Modern DevTools</span>
+            <br>
+            <span class="plus">+</span>
+            <span class="h3">Коммуникация</span>
         </p>
 
         <style>
@@ -109,95 +112,12 @@
                 display: inline-block;
                 vertical-align: middle;
                 width: 100px;
+                margin-left: -10px;
             }
             
             .h3 {
                 font-size: 1.17em;
                 font-weight: bold;
-            }
-        </style>
-    </section>
-
-    <section class="slide" id="http">
-        <h2>Протоколы передачи данных</h2>
-        <table>
-            <tr>
-                <th scope="col"></th>
-                <th>HTTP1.1</th>
-                <th>HTTP2</th>
-            </tr>
-            <tr>
-                <th scope="row">head-of-line blocking</th>
-                <td>не больше 6ти запросов за раз</td>
-                <td>мультиплексирование + приоритезация потоков</td>
-            </tr>
-            <tr>
-                <th scope="row">uncompressed headers</th>
-                <td>сервер сжимает только тело запроса, но&nbsp;не&nbsp;заголовки</td>
-                <td>HPACK</td>
-            </tr>
-            <tr>
-                <th scope="row">nonsecure websites</th>
-                <td>серверы не обязаны использовать&nbsp;SSL</td>
-                <td>использует SSL-соединения</td>
-            </tr>
-            <tr>
-                <th scope="row">тип протокола</th>
-                <td>текстовый</td>
-                <td>бинарный</td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>SERVER PUSH (nginx 1.13.9)</td>
-            </tr>
-            </table>
-
-            <style>
-                #http td {
-                    font-size: .8em;
-                }
-
-                #http th {
-                    line-height: 1.4;
-                }
-            </style>
-    </section>
-
-    <section class="slide">
-        <h2>Антипаттерны оптимизации для HTTP/2</h2>
-        <ul>
-            <li class="next">Bundling CSS and JavaScript</li>
-            <li class="next">Image sprites</li>
-            <li class="next">Asset inlining</li>
-        </ul>
-
-        <p class="next"><strong>Ухудшается эффективность кэшировая</strong></p>
-
-        <ul>
-            <li class="next">Domain Sharding - способ распределения множества файлов по различным доменам и CDN
-                <br>
-                <a href="https://ruhighload.com/%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B2+http%2F2">Оптимизация в HTTP/2</a> 
-                  |   
-                <a href="https://docs.google.com/spreadsheets/d/1EPCxFe8KRubg87edb0s_3UyQgMeQENrFDu1uMPLt2W8/edit#gid=0">Таблица результатов для REDKEN</a>
-            </li>
-        </ul>
-    </section>
-
-    <section class="slide" id="http2">
-        <h2>Можно ничего не делать</h2>
-        
-        <figure>
-            <img class="place center center" src="pictures/http2.png" alt="http2">
-        </figure>
-
-        <style>
-            #http2 {
-                background-color: #f5f7f9;
-            }
-
-            #http2 img {
-                max-width: 280px;
             }
         </style>
     </section>
@@ -270,7 +190,7 @@
             <li class="next">Lighthouse (таба Audits)</li>
             <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
             <li class="next">Google Chrome’s devTools (таба Network, Performance, ...)</li>
-            <li class="next"><a href="https://www.catchpoint.com/">catchpoint</a> (трек лореалей не на нашей стороне)</li>
+            <li class="next"><a href="https://www.catchpoint.com/">catchpoint</a> (отчеты по loreal-проектам)</li>
             <li class="next"><a href="https://calibreapp.com/">Сalibreapp</a></li>
         </ul>
     </section>
@@ -638,9 +558,17 @@
 
         <ul>
             <li><a href="https://github.com/dinbror/blazy">blazy</a> — на картинках не попадающих в область видимости (вьюпорт, первый экран)</li>
+            <li>кастомный lazyload</li>
             <li>ajax load — на блоках не попадающих во вьюпорт</li>
             <li>Асинхронный CSS на <a href="https://www.laroche-posay.ru/">LRP</a></li>
+            <li>Подложка баннера на <a href="https://www.skinceuticals.l.oggettoweb.com/">SkinCeuticals</a></li>
         </ul>
+    </section>
+
+    <section class="slide" >
+        <h2>Лишняя разметка</h2>
+
+        <p>про библиотеку на бэке для определения устройств...</p>
     </section>
 
     <section class="slide" id="fonts">
@@ -920,7 +848,7 @@
 
         <ul>
             <li><a href="https://www.modpagespeed.com/doc/">Google mod_pagespeed</a></li>
-            <li><a href="https://www.cloudflare.com/">Cloudflare</a> - по дефолту подключен на лореали</li>
+            <li><a href="https://www.cloudflare.com/">Cloudflare</a> - по дефолту подключен на loreal-проеты</li>
         </ul>
 
         <p>
@@ -933,6 +861,90 @@
 
     <section class="slide clear">
         <h2 class="shout shrink">Сборка Cerave на&nbsp;М2</h2>
+    </section>
+
+    <section class="slide" id="http">
+        <h2>Протоколы передачи данных</h2>
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>HTTP1.1</th>
+                <th>HTTP2</th>
+            </tr>
+            <tr>
+                <th scope="row">head-of-line blocking</th>
+                <td>не больше 6ти запросов за раз</td>
+                <td>мультиплексирование + приоритезация потоков</td>
+            </tr>
+            <tr>
+                <th scope="row">uncompressed headers</th>
+                <td>сервер сжимает только тело запроса, но&nbsp;не&nbsp;заголовки</td>
+                <td>HPACK</td>
+            </tr>
+            <tr>
+                <th scope="row">nonsecure websites</th>
+                <td>серверы не обязаны использовать&nbsp;SSL</td>
+                <td>использует SSL-соединения</td>
+            </tr>
+            <tr>
+                <th scope="row">тип протокола</th>
+                <td>текстовый</td>
+                <td>бинарный</td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>SERVER PUSH (nginx 1.13.9)</td>
+            </tr>
+        </table>
+
+        <style>
+            #http td {
+                font-size: .8em;
+            }
+
+            #http th {
+                line-height: 1.4;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Антипаттерны оптимизации для HTTP/2</h2>
+        <ul>
+            <li class="next">Bundling CSS and JavaScript</li>
+            <li class="next">Image sprites</li>
+            <li class="next">Asset inlining</li>
+        </ul>
+
+        <p class="next"><strong>Ухудшается эффективность кэшировая</strong></p>
+
+        <ul>
+            <li class="next">Domain Sharding - способ распределения множества файлов по различным доменам и CDN
+                <br>
+                <a href="https://ruhighload.com/%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B2+http%2F2">Оптимизация в HTTP/2</a>
+                |
+                <a href="https://docs.google.com/spreadsheets/d/1EPCxFe8KRubg87edb0s_3UyQgMeQENrFDu1uMPLt2W8/edit#gid=0">Таблица результатов для REDKEN</a>
+            </li>
+        </ul>
+    </section>
+
+    <section class="slide" id="http2">
+        <h2>Можно ничего не делать</h2>
+
+        <figure>
+            <img class="place center center" src="pictures/http2.png" alt="http2">
+        </figure>
+
+        <style>
+            #http2 {
+                background-color: #f5f7f9;
+            }
+
+            #http2 img {
+                max-width: 280px;
+            }
+        </style>
     </section>
 
     <section class="slide clear" id="see-more">
