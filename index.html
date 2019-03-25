@@ -151,6 +151,10 @@
             <li class="next"><code>will-change</code></li>
         </ul>
 
+        <div class="copyright right next">
+            <a href="https://video.yandex.ru/users/ya-events/view/3267/">© Аппаратное ускорение в жизни верстальщика</a>
+        </div>
+
         <style>
             #layer pre {
                 display: inline-block;
@@ -167,10 +171,43 @@
         </style>
     </section>
 
+    <section class="slide" id="cssRender">
+        <h2>Рендеринг CSS-свойств</h2>
+
+        <p class="next">
+            BRO: <code>transform</code>, <code>opacity</code> и <code>filter</code> - пропускают этапы <strong>Layout</strong> и <strong>Paint</strong>, обработаны напрямую через GPU.
+        </p>
+
+        <p class="next">
+            <a class="csstriggers-link" href="https://csstriggers.com/">csstriggers</a>
+        </p>
+
+        <img class="place center bottom next" src="pictures/csstriggers.png" alt="csstriggers">
+
+        <style>
+            #cssRender p {
+                font-size: .9em;
+            }
+
+            #cssRender .csstriggers-link {
+                transform: translateY(82px) rotate(-90deg);
+                display: inline-block;
+            }
+
+            #cssRender img {
+                max-width: 64%;
+            }
+        </style>
+    </section>
+
     <section class="slide">
         <h2>Метрики загрузки страницы</h2>
         <figure>
             <img class="place center center" src="pictures/metric.png" alt="metric">
+
+            <figcaption class="copyright right">
+                <a href="https://medium.com/web-standards/performance-metrics-ff23c213164e">© Метрики загрузки страницы</a>
+            </figcaption>
         </figure>
     </section>
 
@@ -178,10 +215,14 @@
         <h2>Прогрессивные веб-метрики (ПВМ)</h2>
         <figure>
             <img class="place center bottom" src="pictures/performance-metrics.png" alt="performance-metrics">
+
+            <figcaption class="copyright right">
+                <a href="https://medium.com/web-standards/performance-metrics-ff23c213164e">© Метрики загрузки страницы</a>
+            </figcaption>
         </figure>
     </section>
 
-    <section class="slide">
+    <section class="slide" id="tools">
         <h2>Инструменты</h2>
 
         <ul>
@@ -189,10 +230,17 @@
             <li class="next"><a href="https://tools.pingdom.com/">pingdom</a></li>
             <li class="next">Lighthouse (таба Audits)</li>
             <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
+            <li class="next"><a href="https://github.com/micmro/performance-bookmarklet">Performance-Bookmarklet</a></li>
             <li class="next">Google Chrome’s devTools (таба Network, Performance, ...)</li>
             <li class="next"><a href="https://www.catchpoint.com/">catchpoint</a> (отчеты по loreal-проектам)</li>
             <li class="next"><a href="https://calibreapp.com/">Сalibreapp</a></li>
         </ul>
+
+        <style>
+            #tools h2 {
+                margin-bottom: .3em;
+            }
+        </style>
     </section>
 
     <section class="slide" id="fps">
@@ -789,35 +837,6 @@
         </style>
     </section>
 
-    <section class="slide" id="cssRender">
-        <h2>Рендеринг CSS-свойств</h2>
-
-        <p class="next">
-            BRO: <code>transform</code>, <code>opacity</code> и <code>filter</code> - пропускают этапы <strong>Layout</strong> и <strong>Paint</strong>, обработаны напрямую через GPU.
-        </p>
-
-        <p class="next">
-            <a class="csstriggers-link" href="https://csstriggers.com/">csstriggers</a>
-        </p>
-
-        <img class="place center bottom next" src="pictures/csstriggers.png" alt="csstriggers">
-
-        <style>
-            #cssRender p {
-                font-size: .9em;
-            }
-
-            #cssRender .csstriggers-link {
-                transform: translateY(82px) rotate(-90deg);
-                display: inline-block;
-            }
-
-            #cssRender img {
-                max-width: 64%;    
-            }
-        </style>
-    </section>
-
     <section class="slide" id="resourceHints">
         <h2>Ресурсные подсказки (Resource Hints)</h2>
 
@@ -949,7 +968,7 @@
 
     <section class="slide clear" id="see-more">
         <h2 class="shout">
-            <a href="https://github.com/AnastasiyaDev/optimization-notes/">See more on GitHub</a>
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">Заметки на GitHub</a>
         </h2>
         <style>
             #see-more h2 {
