@@ -20,6 +20,17 @@
         .progress {
             --color-blue: #faec6f;
         }
+
+        .note {
+            margin-bottom: .1rem;
+            font-size: 1rem;
+        }
+
+        .subtitle {
+            margin-top: 1rem;
+            margin-bottom: .1rem;
+            line-height: 2rem;
+        }
     </style>
 </head>
 <body class="shower list">
@@ -35,7 +46,7 @@
             <span >(Пути Оптимизации неисповедимы)</span>
         </p>
 
-        <p class="note">Ася Бахнарь и Влад Слесаренко</p>
+        <p class="note">Asya & Laslo</p>
 
         <style>
             #cover h2 {
@@ -555,20 +566,171 @@
 
     <section class="slide" id="lazyload">
         <h2>lazyload</h2>
+        <p class="note">&mdash; ленивая загрузка (данные подгружаются только при необходимости, либо просто отложенно)</p>
+
+        <h3 class="next subtitle">Почему важно</h3>
+        <ul class="next">
+            <li>Картинки очень много весят</li>
+            <li class="next">Да и не только картинки (html, js, css)</li>
+        </ul>
+
+        <h3 class="next subtitle">Суть</h3>
+        <ul class="next">
+            <li class="next">Не загружать то, что не нужно</li>
+            <li class="next">Загружать нужное, но позже и с более низким приоритетом</li>
+        </ul>
+
+
+        <style>
+            #lazyload h2 {
+                margin-bottom: .5rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="requestPriority">
+        <h2>Приоритеты запросов</h2>
+        <p><a href="https://calibreapp.com/blog/critical-request/">Статья</a></p>
+        <img class="place center bottom next" src="/pictures/request_priority.png" alt="request_priority">
+
+        <style>
+            #requestPriority img {
+                width: 70%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyloadLibs">
+        <h2>Lazyload изображений</h2>
+        <h3>Готовые библиотеки</h3>
+
+        <p class="note">&mdash; на картинках, не попадающих в область видимости (вьюпорт, первый экран)</p>
+        <ul>
+            <li><a href="https://github.com/dinbror/blazy">blazy</a></li>
+            <li><a href="https://github.com/verlok/lazyload">vanilla-lazyload</a></li>
+            <li><a href="https://github.com/kenwheeler/slick">slick</a></li>
+        </ul>
+
+        <style>
+            #lazyloadLibs h2 {
+                margin-bottom: .5rem;
+            }
+            #lazyloadLibs h3 {
+                margin-bottom: .1rem;
+                margin-top: .1rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyloadCustom">
+        <h2>Кастомные реализации для изображений</h2>
 
         <ul>
-            <li><a href="https://github.com/dinbror/blazy">blazy</a> — на картинках не попадающих в область видимости (вьюпорт, первый экран)</li>
-            <li>кастомный lazyload</li>
-            <li>ajax load — на блоках не попадающих во вьюпорт</li>
-            <li>Асинхронный CSS на <a href="https://www.laroche-posay.ru/">LRP</a></li>
-            <li>Подложка баннера на <a href="https://www.skinceuticals.l.oggettoweb.com/">SkinCeuticals</a></li>
+            <li>В местах, где библиотека не справляется (меню или collapsible блок)</li>
+            <li>Подложка баннера на <a href="https://www.cerave.l.oggettoweb.com/">Cerave</a></li>
+        </ul>
+        добавить картинки
+    </section>
+
+    <section class="slide" id="lazyloadAjax">
+        <h3>Аяксовая подгрузка блоков</h3>
+        <p class="note">&mdash; часть разметки подгружается аяксом, отдельно от основного html страницы. Backend + Frontend</p>
+
+        <table>
+            <tr>
+                <th>можно</th>
+                <th>не стоит</th>
+            </tr>
+            <tr>
+                <td>запрос кэшируется варнишем (например, в м2)</td>
+                <td>не так много html</td>
+            </tr>
+            <tr>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+            <tr>
+                <td>
+                    Примеры:
+                    <ul>
+                        <li>слайдер из >20 товаров</li>
+                        <li>выбор геолокации</li>
+                    </ul>
+                </td>
+                <td>
+                    Примеры:
+                    <ul>
+                        <li>слайдер из <20 товаров</li>
+                        <li>Блок с картинками</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <style>
+            #lazyloadAjax td {
+                font-size: .8em;
+            }
+            #lazyloadAjax th {
+                line-height: 1.4;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyloadCss">
+        <h3>Асинхронная подгрузка css</h3>
+        <p class="note">&mdash; часть разметки подгружается аяксом, отдельно от основного html страницы</p>
+
+        <ul>
+            <li><a href="https://github.com/filamentgroup/loadCSS">loadCss</a></li>
+            <li>кастомная реализация на LRP (<a href="https://git.oggettoweb.com/loreal/lrp/commit/eda37e2745ae2d7d5e81665433cee8a8dba5513d">коммит</a>, <a href="https://git.oggettoweb.com/loreal/lrp/blob/master/app/design/frontend/laroche/oggetto/template/page/html/footer_media.phtml">темплейт</a>)</li>
         </ul>
     </section>
 
-    <section class="slide" >
-        <h2>Лишняя разметка</h2>
+    <section class="slide" id="excessHtml">
+        <h2>Лишняя разметка для адаптивки</h2>
+        <p class="note">касается всяких классов типа hide-on-* или only-*</p>
+        <p class="note next">проверка надобности разметки на этапе обработки бэкендом</p>
 
-        <p>про библиотеку на бэке для определения устройств...</p>
+        <h3 class="next subtitle">Что юзать</h3>
+        <p class="next"><a href="https://packagist.org/packages/mobiledetect/mobiledetectlib">mobiledetect/mobiledetectlib</a> и прочие</p>
+
+        <h3 class="next subtitle">Плюсы/минусы</h3>
+        <ul class="next">
+            <li>Плюс - не грузится лишний html и картинки</li>
+            <li>Минус - сложнее проверять адаптивку в браузере (только с перезагрузкой страницы)</li>
+        </ul>
+    </section>
+
+    <section class="slide" id="excessJs">
+        <h2>Лишний js</h2>
+
+        <h3 class="next subtitle">Где</h3>
+        <ul class="next">
+            <li>Сборщик - вебпак</li>
+            <li>На странице грузится несколько бандлов</li>
+        </ul>
+
+        <p class="next">webpack-bundle-analyzer</p>
+        <img class="place center bottom next" src="pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
+
+        <style>
+            #excessJs h2 {
+                line-height: 1.5rem;
+                margin-bottom: .5rem;
+            }
+            #excessJs img {
+                max-width: 60%;
+                left: 70%;
+            }
+            #excessJs ul {
+                font-size: 1.2rem;
+                line-height: 2rem;
+            }
+            #excessJs .subtitle {
+                font-size: 1.6rem;
+            }
+        </style>
     </section>
 
     <section class="slide" id="fonts">
