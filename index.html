@@ -515,7 +515,8 @@
 
         <p>
             Что надо бы сделать: или запилить таску с <a href="https://www.npmjs.com/package/gulp-responsive">gulp-responsive</a> или скрипт с
-            <a href="http://www.imagemagick.org/script/download.php">ImageMagick</a>
+            <a href="http://www.imagemagick.org/script/download.php">ImageMagick</a> (ресайз + <i>оптимизация</i> - <a
+                href="http://redmine.oggettoweb.com/issues/81193">#81193</a>)
         </p>
     </section>
 
@@ -530,6 +531,8 @@
         </ul>
 
         <h3 class="next">Не важно как, главное убрать лишнее!</h3>
+
+        <h3 class="next">Где я беру svg-шки (если не у дизайнера): <a href="https://www.flaticon.com/">flaticon.com</a></h3>
     </section>
 
     <section class="slide" id="badSVG">
@@ -804,35 +807,6 @@
             #rwww h2 {
                 margin-top: 0;
                 margin-bottom: 10px;
-            }
-        </style>
-    </section>
-
-    <section class="slide">
-        <h2>CSS</h2>
-
-        <ul>
-            <li>DRY (don’t repeat yourself)</li>
-            <li>Не усложнять селекторы, чем вложенность меньше, тем лучше ( <= 3 )</li>
-            <li>Грузить только те стили, которые нужны на конкретной странице</li>
-            <li>Стараться не&nbsp;использовать @import в CSS (именно в CSS) </li>
-            <li><code>&lt;link&gt;</code> должны быть в <code>&lt;head&gt;</code></li>
-            <li>используете <code>flexbox</code></li>
-            <li>CSS transition быстрее, чем jQuery animate()</li>
-        </ul>
-    </section>
-
-    <section class="slide" id="cssSelectors">
-        <h2>The performance of the CSS selector</h2>
-
-        <img class="" src="pictures/css-selectors.png" alt="css-selectors">
-
-        <style>
-            #cssSelectors h2 {
-                margin-bottom: 0;
-            }
-            #cssSelectors img {
-                max-width: 64%;
             }
         </style>
     </section>
