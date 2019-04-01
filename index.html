@@ -680,7 +680,17 @@
             <li>В местах, где библиотека не справляется (меню или collapsible блок)</li>
             <li>Подложка баннера на <a href="https://www.cerave.l.oggettoweb.com/">Cerave</a></li>
         </ul>
-        добавить картинки
+
+        <img class="place center bottom next" src="/pictures/cerave_top_menu_banner.png"/>
+        <img class="place center bottom next" src="/pictures/cerave_banner_placeholder.png"/>
+        <img class="place center bottom next" src="/pictures/cerave_banner.png"/>
+
+        <style>
+            #lazyloadCustom img {
+                max-width: 60%;
+                margin-bottom: 1rem;
+            }
+        </style>
     </section>
 
     <section class="slide" id="lazyloadAjax">
@@ -730,12 +740,28 @@
 
     <section class="slide" id="lazyloadCss">
         <h3>Асинхронная подгрузка css</h3>
-        <p class="note">&mdash; часть разметки подгружается аяксом, отдельно от основного html страницы</p>
+        <p class="note">&mdash; часть css (обычно ненужная для первого экрана) подгружается аяксом, отдельно от основного html страницы</p>
 
         <ul>
             <li><a href="https://github.com/filamentgroup/loadCSS">loadCss</a></li>
             <li>кастомная реализация на LRP (<a href="https://git.oggettoweb.com/loreal/lrp/commit/eda37e2745ae2d7d5e81665433cee8a8dba5513d">коммит</a>, <a href="https://git.oggettoweb.com/loreal/lrp/blob/master/app/design/frontend/laroche/oggetto/template/page/html/footer_media.phtml">темплейт</a>)</li>
         </ul>
+
+        <ul class="next">
+            <li>Плюс - ненужный для первого экрана css догружается в low-приоритете</li>
+            <li>Минус - браузеру после загрузки нужно будет перерендерить части страницы</li>
+        </ul>
+
+        <a href="https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d">статья</a>
+
+        <style>
+            #lazyloadCss h3 {
+                margin-bottom: 0;
+            }
+            #lazyloadCss ul {
+                line-height: 2.5rem;
+            }
+        </style>
     </section>
 
     <section class="slide" id="excessHtml">
@@ -751,6 +777,17 @@
             <li>Плюс - не грузится лишний html и картинки</li>
             <li>Минус - сложнее проверять адаптивку в браузере (только с перезагрузкой страницы)</li>
         </ul>
+
+        <style>
+            #excessHtml ul {
+                line-height: 2rem;
+                font-size: 1.2rem;
+            }
+            #excessHtml .note {
+                line-height: 1rem;
+                font-size: 1rem;
+            }
+        </style>
     </section>
 
     <section class="slide" id="excessJs">
@@ -758,12 +795,19 @@
 
         <h3 class="next subtitle">Где</h3>
         <ul class="next">
-            <li>Сборщик - вебпак</li>
+            <li>Сборщик - webpack</li>
             <li>На странице грузится несколько бандлов</li>
         </ul>
 
-        <p class="next">webpack-bundle-analyzer</p>
-        <img class="place center bottom next" src="pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
+        <p class="next img-title">webpack-bundle-analyzer</p>
+        <img class="place center bottom next" src="/pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
+
+        <code class="next code">
+            npm i webpack-bundle-analyzer<br>
+            npm install -g npx<br>
+            env NODE_ENV=production webpack --json > stats.json<br>
+            npx webpack-bundle-analyzer stats.json
+        </code>
 
         <style>
             #excessJs h2 {
@@ -771,15 +815,28 @@
                 margin-bottom: .5rem;
             }
             #excessJs img {
-                max-width: 60%;
-                left: 70%;
+                max-width: 57%;
+                /*left: 70%;*/
             }
             #excessJs ul {
                 font-size: 1.2rem;
                 line-height: 2rem;
+                margin-bottom: 0;
+            }
+            #excessJs .img-title {
+                text-align: center;
+                font-size: 1.1rem;
             }
             #excessJs .subtitle {
                 font-size: 1.6rem;
+            }
+            #excessJs .code {
+                position: absolute;
+                top: 25%;
+                right: 1rem;
+                font-size: .9rem;
+                line-height: 1rem;
+                font-family: "Courier New", sans-serif;
             }
         </style>
     </section>
@@ -985,11 +1042,16 @@
             <li><strong>Prerender</strong> &mdash; заранее загружает ресурс/страницу и всё содержимое в фоне</li>
         </ul>
 
-        <code>&lt;link rel="preload" href="https://olololo.ru/jquery.min.js" as="script"&gt;</code>
+        <code>&lt;link rel="prefetch" href="https://olololo.ru/jquery.min.js" as="script"&gt;</code><br>
+        <code>&lt;link rel="preload" href="https://olololo.ru/fnt/fnt_medium.woff2" as="font"&gt;</code>
 
         <style>
             #resourceHints li {
                 line-height: 1.55;
+            }
+            #resourceHints code {
+                line-height: 1.2rem;
+                font-size: 1rem;
             }
         </style>
     </section>
@@ -1029,7 +1091,7 @@
             <tr>
                 <th scope="row">head-of-line blocking</th>
                 <td>не больше 6ти запросов за раз</td>
-                <td>мультиплексирование + приоритезация потоков</td>
+                <td>мультиплексирование + <a href="https://www.researchgate.net/publication/324514529_HTTP2_Prioritization_and_its_Impact_on_Web_Performance">приоритезация</a> потоков (собственная)</td>
             </tr>
             <tr>
                 <th scope="row">uncompressed headers</th>
@@ -1037,17 +1099,7 @@
                 <td>HPACK</td>
             </tr>
             <tr>
-                <th scope="row">nonsecure websites</th>
-                <td>серверы не обязаны использовать&nbsp;SSL</td>
-                <td>использует SSL-соединения</td>
-            </tr>
-            <tr>
-                <th scope="row">тип протокола</th>
-                <td>текстовый</td>
-                <td>бинарный</td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
+                <th scope="row">доп фичи</th>
                 <td></td>
                 <td>SERVER PUSH (nginx 1.13.9)</td>
             </tr>
@@ -1056,10 +1108,12 @@
         <style>
             #http td {
                 font-size: .8em;
+                padding: 10px;
             }
 
             #http th {
                 line-height: 1.4;
+                padding: 10px;
             }
         </style>
     </section>
@@ -1088,7 +1142,7 @@
         <h2>Можно ничего не делать</h2>
 
         <figure>
-            <img class="place center center" src="pictures/http2.png" alt="http2">
+            <img class="place center center" src="/pictures/http2.png" alt="http2">
         </figure>
 
         <style>
@@ -1098,6 +1152,163 @@
 
             #http2 img {
                 max-width: 280px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_js_build">
+        <h2>Сборка: где, кем</h2>
+
+        <h3 class="subtitle">Уже применена</h3>
+        <ul>
+            <li>Cerave</li>
+            <li>Kerastase</li>
+        </ul>
+
+        <h3 class="subtitle">В процессе</h3>
+        <ul>
+            <li>Золотое яблоко</li>
+        </ul>
+
+        <p class="next">Подробности в задаче на <a href="http://redmine.oggettoweb.com/issues/80290#note-25">редмайне</a></p>
+
+        <p class="next note">Максим Халилов и Ласло</p>
+    </section>
+
+    <section class="slide" id="cerave_magento">
+        <h2>Что предлагает Magento2 для JS</h2>
+
+        <ul>
+            <li>Мердж</li>
+            <li>Бандлинг</li>
+            <li>Ничего (разбитый по файлам JS)</li>
+        </ul>
+
+        <p class="next note">↑ от худшего к лучшему сверху вниз</p>
+
+        <p class="next note">Потому что мердж и бандлинг выводят на страницу весь js, который есть для текущей темы. Он много весит и долго выполняется</p>
+
+        <p class="next note">Было решено разбивать (выключив мердж и бандлинг в настройках конфигурации)</p>
+    </section>
+
+    <section class="slide" id="cerave_magento_min">
+        <h2>Минификация скриптов</h2>
+
+        <ul>
+            <li>Из коробки</li>
+            <li class="next">Кастомная minify + uglify через gulp</li>
+        </ul>
+
+        <p class="next note">Таск ходит по файлам в pub/static и подменяет их минифицированной версией</p>
+
+        <p class="next note">Благодаря uglify кастомная сжимала лучше, скрипты весили меньше</p>
+
+        <img class="place center bottom next" src="/pictures/m2_js_min_comparison.png" alt="m2_js_min_comparison"/>
+
+        <style>
+            #cerave_magento_min ul {
+                line-height: 2.5rem;
+                margin-bottom: .7rem;
+            }
+            #cerave_magento_min p {
+                line-height: 1.5rem;
+                margin-bottom: .5rem;
+            }
+            #cerave_magento_min img {
+                max-width: 80%;
+                bottom: 1rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_bundle1">
+        <h2>Что еще было не так</h2>
+
+        <ul>
+            <li>Старые браузеры <a href="https://caniuse.com/#search=http2">не поддерживают http2</a></li>
+            <li>Большой критический путь</li>
+        </ul>
+
+        <img class="place bottom next img-left" src="/pictures/cerave_requests_before_bundle1.png" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-right" src="/pictures/cerave_requests_before_bundle2.png" alt="cerave_requests_after_bundle"/>
+
+        <style>
+            #cerave_bundle1 h2 {
+                margin-bottom: 1rem;
+            }
+            #cerave_bundle1 li {
+                line-height: 2rem;
+            }
+
+            #cerave_bundle1 img {
+                max-width: 60%;
+                height: 60%;
+            }
+            #cerave_bundle1 .img-left {
+                left: 20%;
+            }
+            #cerave_bundle1 .img-right {
+                left: 70%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_bundle2">
+        <h2>Бандлинг requirejs</h2>
+
+        <a href="https://requirejs.org/docs/api.html#config-bundles">поддержка рекваером из коробки (часть json с bundles).</a><br>
+        пример json<br>
+        но чтобы файлы модулей собрать, нужно было юзать отдельный сборщик
+    </section>
+
+    <section class="slide" id="cerave_bundle3">
+        <h2>Было решено сделать свой</h2>
+
+        <ul>
+            <li>Задается валидный для requirejs json-файл с названиями бандлов и составляющими модулями</li>
+            <li>Он дописывается в конец requirejs-config.js в pub/static</li>
+            <li>gulp-таск ходит по файлам модулей и объединяет их в файлы бандлов</li>
+        </ul>
+
+        <img class="place center bottom next" src="/pictures/cerave_requests_after.png" alt="cerave_requests_after_bundle"/>
+
+        <style>
+            #cerave_bundle3 h2 {
+                margin-bottom: 1rem;
+            }
+            #cerave_bundle3 li {
+                line-height: 2rem;
+            }
+
+            #cerave_bundle3 img {
+                max-width: 60%;
+                height: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_bundle_props">
+        <h2>Плюсы</h2>
+
+        <ul>
+            <li>Меньше запросов</li>
+            <li>Короче критический путь</li>
+            <li>Бандлы меньше весят, чем раздельные файлы в сумме (gzip и хэдеры)</li>
+        </ul>
+    </section>
+
+    <section class="slide" id="cerave_bundle_cons">
+        <h2>Минусы и что доработать</h2>
+
+        <ul>
+            <li class="next">requirejs-config.js переписывается в dev-режиме, поэтому нужно запускать таск бандлинга заново</li>
+            <li class="next">пока работает только с таской minify (после нее)</li>
+            <li class="next">код не супер</li>
+            <li class="next">Доработать бандлинг html-модулей</li>
+        </ul>
+        <style>
+            #cerave_bundle_cons li {
+                line-height: 2.5rem;
             }
         </style>
     </section>
