@@ -9,12 +9,18 @@
         .shower {
             --slide-ratio: calc(16 / 9);
             --ribbon-size: 40px;
+            --back-color: #ffffff;
+            --default-color: #000;
+        }
+
+        .slide {
+            background-color: var(--back-color);
         }
 
         .slide::after {
             background-image: none;
             background-color: #faec6f;
-            color: #000;
+            color: var(--default-color);
         }
 
         .progress {
@@ -30,6 +36,14 @@
             margin-top: 1rem;
             margin-bottom: .1rem;
             line-height: 2rem;
+        }
+
+        .brand {
+            color: var(--default-color);
+        }
+
+        .green {
+            background-color: #97d64d;
         }
     </style>
 </head>
@@ -681,9 +695,9 @@
             <li>Подложка баннера на <a href="https://www.cerave.l.oggettoweb.com/">Cerave</a></li>
         </ul>
 
-        <img class="place center bottom next" src="/pictures/cerave_top_menu_banner.png"/>
-        <img class="place center bottom next" src="/pictures/cerave_banner_placeholder.png"/>
-        <img class="place center bottom next" src="/pictures/cerave_banner.png"/>
+        <img class="place center bottom next" src="/pictures/cerave_top_menu_banner.jpg"/>
+        <img class="place center bottom next" src="/pictures/cerave_banner_placeholder.jpg"/>
+        <img class="place center bottom next" src="/pictures/cerave_banner.jpg"/>
 
         <style>
             #lazyloadCustom img {
@@ -1229,8 +1243,8 @@
             <li>Большой критический путь</li>
         </ul>
 
-        <img class="place bottom next img-left" src="/pictures/cerave_requests_before_bundle1.png" alt="cerave_requests_after_bundle"/>
-        <img class="place bottom next img-right" src="/pictures/cerave_requests_before_bundle2.png" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-left" src="/pictures/cerave_requests_before_bundle1.jpg" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-right" src="/pictures/cerave_requests_before_bundle2.jpg" alt="cerave_requests_after_bundle"/>
 
         <style>
             #cerave_bundle1 h2 {
@@ -1270,7 +1284,7 @@
             <li>gulp-таск ходит по файлам модулей и объединяет их в файлы бандлов</li>
         </ul>
 
-        <img class="place center bottom next" src="/pictures/cerave_requests_after.png" alt="cerave_requests_after_bundle"/>
+        <img class="place center bottom next" src="/pictures/cerave_requests_after.jpg" alt="cerave_requests_after_bundle"/>
 
         <style>
             #cerave_bundle3 h2 {
@@ -1313,10 +1327,96 @@
         </style>
     </section>
 
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">skinCeuticals</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>10.86</td>
+                <td>4.97</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>5.41</td>
+                <td>3.03</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~50%</td>
+                <td>~39%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">CeraVe</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>11.62</td>
+                <td>4.97</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>8.09</td>
+                <td>3.25</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~30%</td>
+                <td>~35%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">Kerastase</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>17.74</td>
+                <td>5.61</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>8.47</td>
+                <td>3.92</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~52%</td>
+                <td>~30%</td>
+            </tr>
+        </table>
+    </section>
+
     <section class="slide clear" id="see-more">
         <h2 class="shout">
-            <a href="https://github.com/AnastasiyaDev/optimization-notes/">Заметки на GitHub</a>
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">Мои заметки на GitHub</a>
         </h2>
+
+        <div class="copyright right">
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">© AnastasiyaDev</a>
+        </div>
+
         <style>
             #see-more h2 {
                 font-size: 100px;
