@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Пути Оптимизации неисповедимы</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+            --ribbon-size: 40px;
+            --back-color: #ffffff;
+            --default-color: #000;
+        }
+
+        .slide {
+            background-color: var(--back-color);
+        }
+
+        .slide::after {
+            background-image: none;
+            background-color: #faec6f;
+            color: var(--default-color);
+        }
+
+        .progress {
+            --color-blue: #faec6f;
+        }
+
+        .note {
+            margin-bottom: .1rem;
+            font-size: 1rem;
+        }
+
+        .subtitle {
+            margin-top: 1rem;
+            margin-bottom: .1rem;
+            line-height: 2rem;
+        }
+
+        .brand {
+            color: var(--default-color);
+        }
+
+        .green {
+            background-color: #97d64d;
+        }
+    </style>
+</head>
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Пути Оптимизации неисповедимы</h1>
+        <p>Ася Бахнарь и Влад Слесаренко</p>
+    </header>
+
+    <section class="slide clear" id="cover">
+        <h2>Viae Optimization imperceptae sunt</h2>
+        <p class="subtitle">
+            <span >(Пути Оптимизации неисповедимы)</span>
+        </p>
+
+        <p class="note">Asya & Laslo</p>
+
+        <style>
+            #cover h2 {
+                margin: 30px 0 0;
+                color: black;
+                text-align: center;
+                font-size: 63px;
+            }
+
+            #cover p {
+                position: absolute;
+                bottom: 0;
+                right: 50px;
+                text-align: center;
+                font-style: italic;
+                font-size: 20px;
+            }
+
+            #cover .subtitle {
+                position: relative;
+                text-align: right;
+                font-size: 34px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="why">
+        <h2>Что происходит?</h2>
+
+        <figure>
+            <img class="place bottom left" src="pictures/not-sure.jpg" alt="not-sure">
+        </figure>
+
+        <style>
+            #why .place {
+                position: relative;
+                max-width: 410px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="resurce">
+        <figure>
+            <img class="place bottom left" src="pictures/book.jpg" alt="Web Performance in Action">
+        </figure>
+
+        <p class="place right center modenr-tool-title">
+            <span class="plus">+</span>
+            <img src="pictures/modern-tools-logo.svg" alt="modern-tools-logo"/>
+            <span class="h3">Modern DevTools</span>
+            <br>
+            <span class="plus">+</span>
+            <span class="h3">Коммуникация</span>
+        </p>
+
+        <style>
+            #resurce img {
+                max-width: 50%;        
+            }
+
+            #resurce .plus {
+                vertical-align: middle;
+                font-size: 2em;
+                font-weight: bold;
+                padding: 0 2rem;
+                color: #192231;
+            }
+
+            #resurce .modenr-tool-title {
+                width: 50%;
+            }
+
+            #resurce .modenr-tool-title img {
+                display: inline-block;
+                vertical-align: middle;
+                width: 100px;
+                margin-left: -10px;
+            }
+            
+            .h3 {
+                font-size: 1.17em;
+                font-weight: bold;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="render">
+        <h2>Как браузер рендерит страницу</h2>
+        
+        <figure>
+            <img class="place center center" src="pictures/rendering.png" alt="render">
+        </figure>
+
+        <style>
+            #render img {
+                max-width: 100%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="layer">
+        <h2>Слой (композитный слой)</h2>
+
+        <p class="note">&mdash; часть страницы, поддерево DOM. Отрисовывается независимо, компонуется в GPU</p>
+
+        <ul>
+            <li class="next">Эл-ты с 3D-трансформацией (translateZ hack - <code>transform: translateZ(0)</code>)</li>
+            <li class="next"><code>&lt;video&gt;</code>с включенным h/a (Hardware acceleration)</li>
+            <li class="next"><code>&lt;canvas&gt;</code> с 3D или 2D с включенным h/a</li>
+            <li class="next">Плагины (flash, silverlight)</li>
+            <li class="next">CSS фильтры</li>
+            <li class="next">Элементы, вынесенные над композитным слоем (т.е. <code>z-index</code>)</li>
+            <li class="next"><code>will-change</code></li>
+        </ul>
+
+        <div class="copyright right next">
+            <a href="https://video.yandex.ru/users/ya-events/view/3267/">© Аппаратное ускорение в жизни верстальщика</a>
+        </div>
+
+        <style>
+            #layer pre {
+                display: inline-block;
+            }
+
+            #layer .note {
+                font-size: 22px;
+                line-height: 1;
+            }
+
+            #layer code {
+                font-size: .8em;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cssRender">
+        <h2>Рендеринг CSS-свойств</h2>
+
+        <p class="next">
+            BRO: <code>transform</code>, <code>opacity</code> и <code>filter</code> - пропускают этапы <strong>Layout</strong> и <strong>Paint</strong>, обработаны напрямую через GPU.
+        </p>
+
+        <p class="next">
+            <a class="csstriggers-link" href="https://csstriggers.com/">csstriggers</a>
+        </p>
+
+        <img class="place center bottom next" src="pictures/csstriggers.png" alt="csstriggers">
+
+        <style>
+            #cssRender p {
+                font-size: .9em;
+            }
+
+            #cssRender .csstriggers-link {
+                transform: translateY(82px) rotate(-90deg);
+                display: inline-block;
+            }
+
+            #cssRender img {
+                max-width: 64%;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Метрики загрузки страницы</h2>
+        <figure>
+            <img class="place center center" src="pictures/metric.png" alt="metric">
+
+            <figcaption class="copyright right">
+                <a href="https://medium.com/web-standards/performance-metrics-ff23c213164e">© Метрики загрузки страницы</a>
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="slide">
+        <h2>Прогрессивные веб-метрики (ПВМ)</h2>
+        <figure>
+            <img class="place center bottom" src="pictures/performance-metrics.png" alt="performance-metrics">
+
+            <figcaption class="copyright right">
+                <a href="https://medium.com/web-standards/performance-metrics-ff23c213164e">© Метрики загрузки страницы</a>
+            </figcaption>
+        </figure>
+    </section>
+
+    <section class="slide" id="tools">
+        <h2>Инструменты</h2>
+
+        <ul>
+            <li class="next"><a href="https://developers.google.com/speed/pagespeed/insights/">Google PageSpeed Insight</a></li>
+            <li class="next"><a href="https://tools.pingdom.com/">pingdom</a></li>
+            <li class="next">Lighthouse (таба Audits)</li>
+            <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
+            <li class="next"><a href="https://github.com/micmro/performance-bookmarklet">Performance-Bookmarklet</a></li>
+            <li class="next">Google Chrome’s devTools (таба Network, Performance, ...)</li>
+            <li class="next"><a href="https://www.catchpoint.com/">catchpoint</a> (отчеты по loreal-проектам)</li>
+            <li class="next"><a href="https://calibreapp.com/">Сalibreapp</a></li>
+        </ul>
+
+        <style>
+            #tools h2 {
+                margin-bottom: .3em;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="fps">
+        <h2>Performance</h2>
+
+        <ul>
+            <li>FPS<br><a class="next" href="http://jakearchibald.github.io/jank-invaders/"><small>Jank-эффект</small></a></li>
+        </ul>
+
+        <figure>
+            <img class="place right bottom next" src="pictures/60-fps.jpg" alt="60-fps">
+        </figure>
+
+        <ul>
+            <li class="next">Network</li>
+            <li class="next">CPU</li>
+            <li class="next">Frame</li>
+            <li class="next">Main</li>
+            <li class="next">Raster</li>
+        </ul>
+
+        <style>
+            #fps {
+                background-color: #000;
+            }
+
+            #fps li {
+                color: white;
+            }
+        </style>
+    </section>
+
+    <section class="slide clear" id="ploho">
+        <figure>
+            <img class="cover" src="pictures/ploho.png" alt="">
+        </figure>
+    </section>
+
+    <section class="slide">
+        <h2>User Timing</h2>
+
+        <code>window.performance.mark('my_mark');</code>
+        <code>window.performance.measure('u text', 'domComplete', 'my_mark');</code>
+
+        <br>Посмотреть события - <a href="https://developer.mozilla.org/ru/docs/Web/API/Navigation_timing_API">PerformanceTiming</a>
+
+        <div class="next">
+            <span>Посмотреть все метки и замеры:</span><br>
+            <code>performance.getEntriesByType('mark');</code>
+            <code>performance.getEntriesByType('measure');</code>  
+        </div>
+    </section>
+
+    <section class="slide" id="truncate">
+        <h2>Переполнение текста в блоке</h2>
+        <ul>
+            <li class="next"><code>text-overflow: clip | ellipsis</code></li>
+            <li class="next">
+                <a href="https://www.npmjs.com/package/jquery.dotdotdot"><code>jquery.dotdotdot.js</code></a> 
+                deprecated -> <a href="https://www.npmjs.com/package/dotdotdot-js"><code>dotdotdot-js</code></a>
+            </li>
+            <li class="next">
+                <a href="https://www.npmjs.com/package/shave"><code>shave.js</code></a>
+                <br>
+                <img class="truncate next" src="../pictures/truncate.png" alt="truncate">
+            </li>
+        </ul>
+
+        <style>
+            #truncate h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+            }
+
+            #truncate .truncate {
+                max-width: 94%;
+            }
+
+            #truncate li {
+                font-size: .8em;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="webkitLineClamp">
+        <h2><code>-webkit-line-clamp</code></h2>
+        
+        <figure>
+            <img class="place center" src="../pictures/line-clamp.png" alt="webkitLineClamp">
+        </figure>
+
+        <p class="place center bottom">
+            pageSpeed поднялся на <strong>2</strong> в мобилке и на <strong>6</strong> на десктопе
+        </p>
+
+        <style>
+            #webkitLineClamp h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: 1.2em;
+            }
+
+            #webkitLineClamp img {
+                max-width: 90%;
+            }
+
+            #webkitLineClamp p {
+                width: 90%;
+                text-align: center;
+            }
+        </style>
+    </section>
+
+    <section class="slide clear" id="front">
+        <h2 class="shout shrink">Фронтовая<br>оптимизация<br>ресурсов</h2>
+
+        <style>
+            #front h2 {
+                font-size: 4.5em;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="opt_res">
+        <h2>Минимизация ресурсов</h2>
+
+        <code>
+            npm i -g uglify csso html-minify
+        </code>
+
+        <ul>
+            <li><span>HTML</span>, <code>htmlminify</code></li>
+            <li><span>CSS</span>, <code>csso</code></li>
+            <li><span>JS</span>, <code>uglify</code></li>
+            <li><span>Images</span></li>
+        </ul>
+
+        <style>
+            #opt_res ul {
+                margin-top: 2em;
+            }
+
+            #opt_res li span {
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="opt_img">
+        <h2>Оптимизация картинок</h2>
+
+        <ul>
+            <li><a href="https://imageoptim.com">ImageOptim</a></li>
+            <li><a href="https://tinypng.com/">tinypng</a></li>
+            <li><a href="https://squoosh.app">squoosh</a></li>
+        </ul>
+
+        <figure>
+            <img class="place center bottom next" src="pictures/shakal_c.jpg" alt="shakal">
+        </figure>
+
+        <style>
+            #opt_img img {
+                max-width: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="opt_gif">
+        <h2>gif</h2>
+
+        <code>
+            ffmpeg -i 1-test.gif -movflags faststart -pix_fmt yuv420p -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" video.mp4
+        </code>
+
+        <table class="next">
+            <tr>
+                <th scope="col"></th>
+                <th>.gif</th>
+                <th>.mp4</th>
+            </tr>
+            <tr>
+                <th scope="row">размер</th>
+                <td>1.4 MB</td>
+                <td>118 КБ</td>
+            </tr>
+        </table>
+
+        <div class="next">
+            <span>Для оптимизации видео:</span>
+            <code>
+                ffmpeg -i input.mp4 -movflags faststart -acodec copy -vcodec copy output.mp4
+            </code>
+        </div>
+
+        <div class="copyright right next">
+            <a href="http://denis-zavgorodny.github.io/2017/01/30/mp4-web-optimizing/">© Оптимизация mp4 видео для быстрой загрузки</a>
+        </div>
+
+        <style>
+            #opt_gif img {
+                max-width: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="no_gif">
+        <figure>
+            <img class="cover" src="pictures/no_gif.jpg" alt="no_gif">
+
+            <figcaption class="copyright right">
+                <a href="https://www.youtube.com/watch?v=JPbFcQMyzaY">© Делайте из слона муху</a>
+            </figcaption>
+        </figure>
+
+        <style>
+            #no_gif {
+                background-color: #2f2f2f;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="mp4">
+        <figure>
+            <img class="cover" src="pictures/mp4.png" alt="mp4 поддержка">
+        </figure>
+    </section>
+
+    <section class="slide" id="resp_img">
+        <h2>Отзывчивые картинки</h2>
+
+        <ul>
+            <li>Не респонсивный вариант<br>
+                <pre><code>&lt;img srcset="simple@2x.png 2x, simple.png 1x" src="simple.png" alt=""&gt;</code>
+                </pre>
+            </li>
+            <li><code>picture</code> + picturefill (для IE)<br>
+                <pre class="small"><code>&lt;picture&gt;
+  &lt;source srcset="banner_m.jpg, banner_m@2x.jpg 2x" media="(max-width: 768px)"&gt;
+  &lt;source srcset="banner_t.jpg, banner_t@2x.jpg 2x" media="screen and (min-width: 768px) and (max-width: 1024px)"&gt;
+  &lt;source srcset="banner.jpg, banner@2x.jpg 2x" media="screen and (min-width: 1025px)"&gt;
+  &lt;img srcset="banner.jpg" alt=""&gt;
+&lt;/picture></code>
+                </pre>
+            </li>
+        </ul>
+
+        <style>
+            #resp_img pre {
+                font-size: .7em;
+            }
+
+            #resp_img pre.small {
+                font-size: .6em;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Использование <code>&lt;picture&gt;</code></h2>
+
+        <ul>
+            <li>Для баннеров на главной</li>
+            <li>Не только на главной</li>
+            <li>(Не только для баннеров)</li>
+        </ul>
+
+        <p>
+            <a href="https://kerastase.ru/blond-absolu-landing">Пример на Kerastase</a>
+        </p>
+
+        <p>
+            Что надо бы сделать: или запилить таску с <a href="https://www.npmjs.com/package/gulp-responsive">gulp-responsive</a> или скрипт с
+            <a href="http://www.imagemagick.org/script/download.php">ImageMagick</a> (ресайз + <i>оптимизация</i> - <a
+                href="http://redmine.oggettoweb.com/issues/81193">#81193</a>)
+        </p>
+    </section>
+
+    <section class="slide" id="svg">
+        <h2>SVG</h2>
+
+        <ul>
+            <li class="next"><code>npm i -g svgo</code></li>
+            <li class="next"><a href="https://imageoptim.com">ImageOptim</a></li>
+            <li class="next"><a href="https://jakearchibald.github.io/svgomg/">svgomg</a></li>
+            <li class="next">ручками</li>
+        </ul>
+
+        <h3 class="next">Не важно как, главное убрать лишнее!</h3>
+
+        <h3 class="next">Где я беру svg-шки (если не у дизайнера): <a href="https://www.flaticon.com/">flaticon.com</a></h3>
+    </section>
+
+    <section class="slide" id="badSVG">
+        <figure>
+            <img class="cover" src="pictures/bad-svg.png" alt="badSVG">
+        </figure>
+
+        <style>
+            #badSVG {
+                background-color: #3a3f41;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="goodSVG">
+        <figure>
+            <img class="cover" src="pictures/good-svg.png" alt="goodSVG">
+        </figure>
+
+        <style>
+            #goodSVG {
+                background-color: #3a3f41;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="webP">
+        <img class="" src="pictures/webp-support.png" alt="webp support">
+
+        <div style="text-align: right">
+            <a href="https://pastebin.com/">Конвектор</a>
+        </div>
+
+        <pre><code>&lt;picture&gt;
+    &lt;source srcset="img/amp-small.webp" type="image/webp"&gt;
+    &lt;img src="img/amp-small.jpg"&gt;
+&lt;/picture&gt;
+        </code>
+        </pre>
+
+        <style>
+            #webP img {
+                display: block;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            #webP pre {
+                font-size: .8em;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="webPChart">
+        <h2>WebP в сравнении с JPEG и PNG</h2>
+
+        <figure>
+            <img class="place center left" src="pictures/webp-chart-1.png" alt="">
+        </figure>
+
+        <figure>
+            <img class="place center right" src="pictures/webp-chart-2.png" alt="">
+        </figure>
+
+        <style>
+            #webPChart img {
+                max-width: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyload">
+        <h2>lazyload</h2>
+        <p class="note">&mdash; ленивая загрузка (данные подгружаются только при необходимости, либо просто отложенно)</p>
+
+        <h3 class="next subtitle">Почему важно</h3>
+        <ul class="next">
+            <li>Картинки очень много весят</li>
+            <li class="next">Да и не только картинки (html, js, css)</li>
+        </ul>
+
+        <h3 class="next subtitle">Суть</h3>
+        <ul class="next">
+            <li class="next">Не загружать то, что не нужно</li>
+            <li class="next">Загружать нужное, но позже и с более низким приоритетом</li>
+        </ul>
+
+
+        <style>
+            #lazyload h2 {
+                margin-bottom: .5rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="requestPriority">
+        <h2>Приоритеты запросов</h2>
+        <p><a href="https://calibreapp.com/blog/critical-request/">Статья</a></p>
+        <img class="place center bottom next" src="/pictures/request_priority.png" alt="request_priority">
+
+        <style>
+            #requestPriority img {
+                width: 70%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyloadLibs">
+        <h2>Lazyload изображений</h2>
+        <h3>Готовые библиотеки</h3>
+
+        <p class="note">&mdash; на картинках, не попадающих в область видимости (вьюпорт, первый экран)</p>
+        <ul>
+            <li><a href="https://github.com/dinbror/blazy">blazy</a></li>
+            <li><a href="https://github.com/verlok/lazyload">vanilla-lazyload</a></li>
+            <li><a href="https://github.com/kenwheeler/slick">slick</a></li>
+        </ul>
+
+        <style>
+            #lazyloadLibs h2 {
+                margin-bottom: .5rem;
+            }
+            #lazyloadLibs h3 {
+                margin-bottom: .1rem;
+                margin-top: .1rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyloadCustom">
+        <h2>Кастомные реализации для изображений</h2>
+
+        <ul>
+            <li>В местах, где библиотека не справляется (меню или collapsible блок)</li>
+            <li>Подложка баннера на <a href="https://www.cerave.l.oggettoweb.com/">Cerave</a></li>
+        </ul>
+
+        <img class="place center bottom next" src="/pictures/cerave_top_menu_banner.jpg"/>
+        <img class="place center bottom next" src="/pictures/cerave_banner_placeholder.jpg"/>
+        <img class="place center bottom next" src="/pictures/cerave_banner.jpg"/>
+
+        <style>
+            #lazyloadCustom img {
+                max-width: 60%;
+                margin-bottom: 1rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyloadAjax">
+        <h3>Аяксовая подгрузка блоков</h3>
+        <p class="note">&mdash; часть разметки подгружается аяксом, отдельно от основного html страницы. Backend + Frontend</p>
+
+        <table>
+            <tr>
+                <th>можно</th>
+                <th>не стоит</th>
+            </tr>
+            <tr>
+                <td>запрос кэшируется варнишем (например, в м2)</td>
+                <td>не так много html</td>
+            </tr>
+            <tr>
+                <td>...</td>
+                <td>...</td>
+            </tr>
+            <tr>
+                <td>
+                    Примеры:
+                    <ul>
+                        <li>слайдер из >20 товаров</li>
+                        <li>выбор геолокации</li>
+                    </ul>
+                </td>
+                <td>
+                    Примеры:
+                    <ul>
+                        <li>слайдер из <20 товаров</li>
+                        <li>Блок с картинками</li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+
+        <style>
+            #lazyloadAjax td {
+                font-size: .8em;
+            }
+            #lazyloadAjax th {
+                line-height: 1.4;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="lazyloadCss">
+        <h3>Асинхронная подгрузка css</h3>
+        <p class="note">&mdash; часть css (обычно ненужная для первого экрана) подгружается аяксом, отдельно от основного html страницы</p>
+
+        <ul>
+            <li><a href="https://github.com/filamentgroup/loadCSS">loadCss</a></li>
+            <li>кастомная реализация на LRP (<a href="https://git.oggettoweb.com/loreal/lrp/commit/eda37e2745ae2d7d5e81665433cee8a8dba5513d">коммит</a>, <a href="https://git.oggettoweb.com/loreal/lrp/blob/master/app/design/frontend/laroche/oggetto/template/page/html/footer_media.phtml">темплейт</a>)</li>
+        </ul>
+
+        <ul class="next">
+            <li>Плюс - ненужный для первого экрана css догружается в low-приоритете</li>
+            <li>Минус - браузеру после загрузки нужно будет перерендерить части страницы</li>
+        </ul>
+
+        <a href="https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d">статья</a>
+
+        <style>
+            #lazyloadCss h3 {
+                margin-bottom: 0;
+            }
+            #lazyloadCss ul {
+                line-height: 2.5rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="excessHtml">
+        <h2>Лишняя разметка для адаптивки</h2>
+        <p class="note">касается всяких классов типа hide-on-* или only-*</p>
+        <p class="note next">проверка надобности разметки на этапе обработки бэкендом</p>
+
+        <h3 class="next subtitle">Что юзать</h3>
+        <p class="next"><a href="https://packagist.org/packages/mobiledetect/mobiledetectlib">mobiledetect/mobiledetectlib</a> и прочие</p>
+
+        <h3 class="next subtitle">Плюсы/минусы</h3>
+        <ul class="next">
+            <li>Плюс - не грузится лишний html и картинки</li>
+            <li>Минус - сложнее проверять адаптивку в браузере (только с перезагрузкой страницы)</li>
+        </ul>
+
+        <style>
+            #excessHtml ul {
+                line-height: 2rem;
+                font-size: 1.2rem;
+            }
+            #excessHtml .note {
+                line-height: 1rem;
+                font-size: 1rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="excessJs">
+        <h2>Лишний js</h2>
+
+        <h3 class="next subtitle">Где</h3>
+        <ul class="next">
+            <li>Сборщик - webpack</li>
+            <li>На странице грузится несколько бандлов</li>
+        </ul>
+
+        <p class="next img-title">webpack-bundle-analyzer</p>
+        <img class="place center bottom next" src="/pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
+
+        <code class="next code">
+            npm i webpack-bundle-analyzer<br>
+            npm install -g npx<br>
+            env NODE_ENV=production webpack --json > stats.json<br>
+            npx webpack-bundle-analyzer stats.json
+        </code>
+
+        <style>
+            #excessJs h2 {
+                line-height: 1.5rem;
+                margin-bottom: .5rem;
+            }
+            #excessJs img {
+                max-width: 57%;
+                /*left: 70%;*/
+            }
+            #excessJs ul {
+                font-size: 1.2rem;
+                line-height: 2rem;
+                margin-bottom: 0;
+            }
+            #excessJs .img-title {
+                text-align: center;
+                font-size: 1.1rem;
+            }
+            #excessJs .subtitle {
+                font-size: 1.6rem;
+            }
+            #excessJs .code {
+                position: absolute;
+                top: 25%;
+                right: 1rem;
+                font-size: .9rem;
+                line-height: 1rem;
+                font-family: "Courier New", sans-serif;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="fonts">
+        <h2>Шрифты</h2>
+
+        <div class="red-line-w">
+            <table>
+                <tr>
+                    <th scope="col"></th>
+                    <th>Extension</th>
+                    <th>Browser support</th>
+                </tr>
+                <tr>
+                    <th scope="row">TrueType</th>
+                    <td>ttf</td>
+                    <td>Все, кроме IE8-</td>
+                </tr>
+                <tr>
+                    <th scope="row">OpenType</th>
+                    <td>eot</td>
+                    <td>IE6+</td>
+                </tr>
+                <tr>
+                    <th scope="row">WOFF</th>
+                    <td>woff</td>
+                    <td>Все, кроме Android Browser 4.3- и IE8-</td>
+                </tr>
+                <tr>
+                    <th scope="row">WOFF2</th>
+                    <td>woff2</td>
+                    <td>Все современные, кроме IE</td>
+                </tr>
+            </table>
+            <div class="red-line next"></div>
+        </div>
+
+        <p>Для конвертации: <code>npm i -g ttf2eot ttf2woff ttf2woff2</code></p>
+
+        <style>
+            #fonts .red-line-w {
+                position: relative;
+            }
+
+            #fonts .red-line {
+                position: absolute;
+                left: -5px;
+                top: 123px;
+                width: 55%;
+                height: 4px;
+                background-color: red;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="fontsCascade">
+        <h2>@font-face cascade</h2>
+
+        <pre>
+            <code>@font-face {</code>
+            <code>    font-family: "Open Sans Light";</code>
+            <code>    font-weight: 300;</code>
+            <code>    font-style: normal;</code>
+            <code>    src: local("Open Sans Extra Light"),</code>
+            <code>         local("OpenSans-Light"),</code>
+            <code>         url("open-sans/OpenSans-Light.woff2") format("woff2"),</code>
+            <code>         url("open-sans/OpenSans-Light.woff") format("woff"),</code>
+            <code>         url("open-sans/OpenSans-Light.ttf") format("truetype");</code>
+            <code>}</code>
+        </pre>
+
+        <style>
+            #fontsCascade pre {
+                font-size: .8em;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Загрузка шрифтов</h2>
+
+        <ul>
+            <li>FOIT (Flash of Invisible Text) — «мелькание невидимого текста»</li>
+            <li>FOUT (Flash of Unstyled Text) — «мелькание неоформленного текста»</li>
+        </ul>
+
+        <p>
+            Internet Explorer и Edge используют FOUT и отображают запасные шрифты, пока веб-шрифт не закончит свою
+            загрузку. Все остальные браузеры используют FOIT и прячут текст во время загрузки веб-шрифтов.
+        </p>
+    </section>
+
+    <section class="slide" id="fontDisplay">
+        <h2><code>font-display</code></h2>
+
+        <ul>
+            <li><code>auto</code> — обычно это поведение <code>block</code></li>
+        </ul>
+
+        <figure>
+            <img class="" src="pictures/font-display.png" alt="font-display vulues">
+            <figcaption class="copyright right">
+                <a href="https://telegra.ph/Optimiziruem-veb-s-Vitaliem-Fridmanom-shrifty-02-17">© Оптимизируем веб с Виталием Фридманом— шрифты</a>
+            </figcaption>
+        </figure>
+
+        <style>
+            #fontDisplay h2 {
+                font-size: 1.5em;
+            }
+
+            #fontDisplay ul {
+                line-height: 1.74;
+                font-size: 0.9em;
+                margin-bottom: 10px;
+            }
+
+            #fontDisplay img {
+                max-width: 85%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="js">
+        <h2>Выполнение JS</h2>
+
+        <img class="" src="pictures/js-default.png" alt="js-default">
+
+        <div>
+            <strong>async</strong>
+            <img class="" src="pictures/js-async.png" alt="js-async">
+        </div>
+
+        <div>
+            <strong>defer</strong>
+            <img class="" src="pictures/js-defer.png" alt="js-defer">
+        </div>
+
+
+        <style>
+            #js h2 {
+                margin-bottom: 0;
+            }
+
+            #js img {
+                max-width: 100%;
+                padding-bottom: 10px;
+            }
+
+            #js div {
+                position: relative;
+            }
+
+            #js strong {
+                position: absolute;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="rwww">
+        <h2>read-write-write-write</h2>
+
+        <pre>
+            <code>for (var p = 0; p < paragraphs.length; p++) {</code>
+            <code>    var para = paragraphs[p];</code>
+            <code>    var width = div.offsetWidth;</code>
+            <code>    para.style.left = width + 'px';</code>
+            <code>}</code>
+        </pre>
+
+        <hr>
+
+        <pre class="next">
+            <code>var width = div.offsetWidth;</code>
+            <code>for (var p = 0; p < paragraphs.length; p++) {</code>
+            <code>    var para = paragraphs[p];</code>
+            <code>    para.style.left = width + 'px';</code>
+            <code>}</code>
+        </pre>
+
+        <style>
+            #rwww pre {
+                font-size: .8em;
+            }
+
+            #rwww h2 {
+                margin-top: 0;
+                margin-bottom: 10px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="resourceHints">
+        <h2>Ресурсные подсказки (Resource Hints)</h2>
+
+        <ul>
+            <li><strong>Dns-prefetch</strong> &mdash; устанавливает DNS, TCP, TLS связь</li>
+            <li><strong>Preconnect</strong> &mdash; браузер преобразует имя домена в IP адрес в фоне</li>
+            <li><strong>Prefetch</strong> &mdash; браузер загрузит его с низким приоритетом и положит в кэш (можно запросить активы с другой страницы)</li>
+            <li><strong>Subresource</strong> &mdash; то же самое что и <strong>Prefetch</strong>, только с высоким приоритетом</li>
+            <li><strong>Preload</strong> &mdash; то же самое что и <strong>Prefetch</strong>, но браузер всегда загрузит ресурс</li>
+            <li><strong>Prerender</strong> &mdash; заранее загружает ресурс/страницу и всё содержимое в фоне</li>
+        </ul>
+
+        <code>&lt;link rel="prefetch" href="https://olololo.ru/jquery.min.js" as="script"&gt;</code><br>
+        <code>&lt;link rel="preload" href="https://olololo.ru/fnt/fnt_medium.woff2" as="font"&gt;</code>
+
+        <style>
+            #resourceHints li {
+                line-height: 1.55;
+            }
+            #resourceHints code {
+                line-height: 1.2rem;
+                font-size: 1rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide clear">
+        <h2 class="shout shrink">Серверная оптимизация</h2>
+    </section>
+
+    <section class="slide">
+        <h2>Нужны админы. Или нет?</h2>
+
+        <ul>
+            <li><a href="https://www.modpagespeed.com/doc/">Google mod_pagespeed</a></li>
+            <li><a href="https://www.cloudflare.com/">Cloudflare</a> - по дефолту подключен на loreal-проеты</li>
+        </ul>
+
+        <p>
+            <a href="https://support.cloudflare.com/hc/en-us/articles/200169486-Is-CloudFlare-compatible-with-mod-pagespeed">Пишут</a> что у
+            <strong>Google mod_pagespeed</strong> и <strong>Cloudflare</strong> нет конфликтов
+        </p>
+
+        <h2 class="next">Админы нужны.</h2>
+    </section>
+
+    <section class="slide clear">
+        <h2 class="shout shrink">Сборка Cerave на&nbsp;М2</h2>
+    </section>
+
+    <section class="slide" id="http">
+        <h2>Протоколы передачи данных</h2>
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>HTTP1.1</th>
+                <th>HTTP2</th>
+            </tr>
+            <tr>
+                <th scope="row">head-of-line blocking</th>
+                <td>не больше 6ти запросов за раз</td>
+                <td>мультиплексирование + <a href="https://www.researchgate.net/publication/324514529_HTTP2_Prioritization_and_its_Impact_on_Web_Performance">приоритезация</a> потоков (собственная)</td>
+            </tr>
+            <tr>
+                <th scope="row">uncompressed headers</th>
+                <td>сервер сжимает только тело запроса, но&nbsp;не&nbsp;заголовки</td>
+                <td>HPACK</td>
+            </tr>
+            <tr>
+                <th scope="row">доп фичи</th>
+                <td></td>
+                <td>SERVER PUSH (nginx 1.13.9)</td>
+            </tr>
+        </table>
+
+        <style>
+            #http td {
+                font-size: .8em;
+                padding: 10px;
+            }
+
+            #http th {
+                line-height: 1.4;
+                padding: 10px;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Антипаттерны оптимизации для HTTP/2</h2>
+        <ul>
+            <li class="next">Bundling CSS and JavaScript</li>
+            <li class="next">Image sprites</li>
+            <li class="next">Asset inlining</li>
+        </ul>
+
+        <p class="next"><strong>Ухудшается эффективность кэшировая</strong></p>
+
+        <ul>
+            <li class="next">Domain Sharding - способ распределения множества файлов по различным доменам и CDN
+                <br>
+                <a href="https://ruhighload.com/%D0%9E%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F+%D0%B2+http%2F2">Оптимизация в HTTP/2</a>
+                |
+                <a href="https://docs.google.com/spreadsheets/d/1EPCxFe8KRubg87edb0s_3UyQgMeQENrFDu1uMPLt2W8/edit#gid=0">Таблица результатов для REDKEN</a>
+            </li>
+        </ul>
+    </section>
+
+    <section class="slide" id="http2">
+        <h2>Можно ничего не делать</h2>
+
+        <figure>
+            <img class="place center center" src="/pictures/http2.png" alt="http2">
+        </figure>
+
+        <style>
+            #http2 {
+                background-color: #f5f7f9;
+            }
+
+            #http2 img {
+                max-width: 280px;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_js_build">
+        <h2>Сборка: где, кем</h2>
+
+        <h3 class="subtitle">Уже применена</h3>
+        <ul>
+            <li>Cerave</li>
+            <li>Kerastase</li>
+        </ul>
+
+        <h3 class="subtitle">В процессе</h3>
+        <ul>
+            <li>Золотое яблоко</li>
+        </ul>
+
+        <p class="next">Подробности в задаче на <a href="http://redmine.oggettoweb.com/issues/80290#note-25">редмайне</a></p>
+
+        <p class="next note">Максим Халилов и Ласло</p>
+    </section>
+
+    <section class="slide" id="cerave_magento">
+        <h2>Что предлагает Magento2 для JS</h2>
+
+        <ul>
+            <li>Мердж</li>
+            <li>Бандлинг</li>
+            <li>Ничего (разбитый по файлам JS)</li>
+        </ul>
+
+        <p class="next note">↑ от худшего к лучшему сверху вниз</p>
+
+        <p class="next note">Потому что мердж и бандлинг выводят на страницу весь js, который есть для текущей темы. Он много весит и долго выполняется</p>
+
+        <p class="next note">Было решено разбивать (выключив мердж и бандлинг в настройках конфигурации)</p>
+    </section>
+
+    <section class="slide" id="cerave_magento_min">
+        <h2>Минификация скриптов</h2>
+
+        <ul>
+            <li>Из коробки</li>
+            <li class="next">Кастомная minify + uglify через gulp</li>
+        </ul>
+
+        <p class="next note">Таск ходит по файлам в pub/static и подменяет их минифицированной версией</p>
+
+        <p class="next note">Благодаря uglify кастомная сжимала лучше, скрипты весили меньше</p>
+
+        <img class="place center bottom next" src="/pictures/m2_js_min_comparison.png" alt="m2_js_min_comparison"/>
+
+        <style>
+            #cerave_magento_min ul {
+                line-height: 2.5rem;
+                margin-bottom: .7rem;
+            }
+            #cerave_magento_min p {
+                line-height: 1.5rem;
+                margin-bottom: .5rem;
+            }
+            #cerave_magento_min img {
+                max-width: 80%;
+                bottom: 1rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_bundle1">
+        <h2>Что еще было не так</h2>
+
+        <ul>
+            <li>Старые браузеры <a href="https://caniuse.com/#search=http2">не поддерживают http2</a></li>
+            <li>Большой критический путь</li>
+        </ul>
+
+        <img class="place bottom next img-left" src="/pictures/cerave_requests_before_bundle1.jpg" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-right" src="/pictures/cerave_requests_before_bundle2.jpg" alt="cerave_requests_after_bundle"/>
+
+        <style>
+            #cerave_bundle1 h2 {
+                margin-bottom: 1rem;
+            }
+            #cerave_bundle1 li {
+                line-height: 2rem;
+            }
+
+            #cerave_bundle1 img {
+                max-width: 60%;
+                height: 60%;
+            }
+            #cerave_bundle1 .img-left {
+                left: 20%;
+            }
+            #cerave_bundle1 .img-right {
+                left: 70%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_bundle2">
+        <h2>Бандлинг requirejs</h2>
+
+        <a href="https://requirejs.org/docs/api.html#config-bundles">поддержка рекваером из коробки (часть json с bundles).</a><br>
+        пример json<br>
+        но чтобы файлы модулей собрать, нужно было юзать отдельный сборщик
+    </section>
+
+    <section class="slide" id="cerave_bundle3">
+        <h2>Было решено сделать свой</h2>
+
+        <ul>
+            <li>Задается валидный для requirejs json-файл с названиями бандлов и составляющими модулями</li>
+            <li>Он дописывается в конец requirejs-config.js в pub/static</li>
+            <li>gulp-таск ходит по файлам модулей и объединяет их в файлы бандлов</li>
+        </ul>
+
+        <img class="place center bottom next" src="/pictures/cerave_requests_after.jpg" alt="cerave_requests_after_bundle"/>
+
+        <style>
+            #cerave_bundle3 h2 {
+                margin-bottom: 1rem;
+            }
+            #cerave_bundle3 li {
+                line-height: 2rem;
+            }
+
+            #cerave_bundle3 img {
+                max-width: 60%;
+                height: 50%;
+            }
+        </style>
+    </section>
+
+    <section class="slide" id="cerave_bundle_props">
+        <h2>Плюсы</h2>
+
+        <ul>
+            <li>Меньше запросов</li>
+            <li>Короче критический путь</li>
+            <li>Бандлы меньше весят, чем раздельные файлы в сумме (gzip и хэдеры)</li>
+        </ul>
+    </section>
+
+    <section class="slide" id="cerave_bundle_cons">
+        <h2>Минусы и что доработать</h2>
+
+        <ul>
+            <li class="next">requirejs-config.js переписывается в dev-режиме, поэтому нужно запускать таск бандлинга заново</li>
+            <li class="next">пока работает только с таской minify (после нее)</li>
+            <li class="next">код не супер</li>
+            <li class="next">Доработать бандлинг html-модулей</li>
+        </ul>
+        <style>
+            #cerave_bundle_cons li {
+                line-height: 2.5rem;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">skinCeuticals</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>10.86</td>
+                <td>4.97</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>5.41</td>
+                <td>3.03</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~50%</td>
+                <td>~39%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">CeraVe</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>11.62</td>
+                <td>4.97</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>8.09</td>
+                <td>3.25</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~30%</td>
+                <td>~35%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">Kerastase</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>17.74</td>
+                <td>5.61</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>8.47</td>
+                <td>3.92</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~52%</td>
+                <td>~30%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide clear" id="see-more">
+        <h2 class="shout">
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">Мои заметки на GitHub</a>
+        </h2>
+
+        <div class="copyright right">
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">© AnastasiyaDev</a>
+        </div>
+
+        <style>
+            #see-more h2 {
+                font-size: 100px;
+            }
+
+            #see-more a {
+                background-image: linear-gradient( to top, rgb(0, 0, 0) .06em, transparent .06em );
+                color: black;
+            }
+        </style>
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="shower/shower.min.js"></script>
+</body>
+</html>
