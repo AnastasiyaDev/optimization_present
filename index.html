@@ -237,19 +237,24 @@
         <h2>Инструменты</h2>
 
         <ul>
-            <li class="next"><a href="https://developers.google.com/speed/pagespeed/insights/">Google PageSpeed Insight</a></li>
-            <li class="next"><a href="https://tools.pingdom.com/">pingdom</a></li>
+            <li class="next"><a href="https://developers.google.com/speed/pagespeed/insights/">Google PageSpeed Insights</a></li>
             <li class="next">Lighthouse (таба Audits)</li>
-            <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
-            <li class="next"><a href="https://github.com/micmro/performance-bookmarklet">Performance-Bookmarklet</a></li>
             <li class="next">Google Chrome’s devTools (таба Network, Performance, ...)</li>
+            <li class="next"><a href="https://www.thinkwithgoogle.com/feature/testmysite">Speed Scorecard</a></li>
+            <li class="next">Performance-Bookmarklet: <a href="https://github.com/micmro/performance-bookmarklet">github</a>, <a href="https://chrome.google.com/webstore/detail/performance-analyser/djgfmlohefpomchfabngccpbaflcahjf?hl=ru">маркет</a></li>
+            <li class="next"><a href="https://tools.pingdom.com/">pingdom</a></li>
+            <li class="next"><a href="https://gtmetrix.com/">GtMetrix</a></li>
             <li class="next"><a href="https://www.catchpoint.com/">catchpoint</a> (отчеты по loreal-проектам)</li>
             <li class="next"><a href="https://calibreapp.com/">Сalibreapp</a></li>
+            <li class="next"><a href="https://www.uptrends.com/tools/website-speed-test">Uptrends</a></li>
         </ul>
 
         <style>
             #tools h2 {
                 margin-bottom: .3em;
+            }
+            #tools ul {
+                line-height: 2.5rem;
             }
         </style>
     </section>
@@ -1121,12 +1126,12 @@
     <section class="slide">
         <h2>Антипаттерны оптимизации для HTTP/2</h2>
         <ul>
-            <li class="next">Bundling CSS and JavaScript</li>
-            <li class="next">Image sprites</li>
-            <li class="next">Asset inlining</li>
+            <li class="next">Мерджинг CSS / JavaScript</li>
+            <li class="next">Спрайты изображений</li>
+            <li class="next">Инлайнинг ассетов (base64, критикал при server push)</li>
         </ul>
 
-        <p class="next"><strong>Ухудшается эффективность кэшировая</strong></p>
+        <p class="next"><strong>Ухудшается эффективность кэширования</strong></p>
 
         <ul>
             <li class="next">Domain Sharding - способ распределения множества файлов по различным доменам и CDN
@@ -1179,9 +1184,9 @@
         <h2>Что предлагает Magento2 для JS</h2>
 
         <ul>
-            <li>Мердж</li>
-            <li>Бандлинг</li>
-            <li>Ничего (разбитый по файлам JS)</li>
+            <li>Мерджинг<span class="govno">говно</span></li>
+            <li>Бандлинг<span class="govno">говно</span></li>
+            <li>Ничего (разбитый по файлам JS)<span class="govno">збс</span></li>
         </ul>
 
         <p class="next note">↑ от худшего к лучшему сверху вниз</p>
@@ -1189,6 +1194,14 @@
         <p class="next note">Потому что мердж и бандлинг выводят на страницу весь js, который есть для текущей темы. Он много весит и долго выполняется</p>
 
         <p class="next note">Было решено разбивать (выключив мердж и бандлинг в настройках конфигурации)</p>
+
+        <style>
+            #cerave_magento .govno {
+                font-size: 2px;
+                font-weight: 700;
+                letter-spacing: -.1px;
+            }
+        </style>
     </section>
 
     <section class="slide" id="cerave_magento_min">
@@ -1206,17 +1219,20 @@
         <img class="place center bottom next" src="/pictures/m2_js_min_comparison.png" alt="m2_js_min_comparison"/>
 
         <style>
+            #cerave_magento_min h2 {
+                margin-bottom: 0.2rem;
+            }
             #cerave_magento_min ul {
                 line-height: 2.5rem;
-                margin-bottom: .7rem;
+                margin: 0.7rem;
             }
             #cerave_magento_min p {
                 line-height: 1.5rem;
                 margin-bottom: .5rem;
             }
             #cerave_magento_min img {
-                max-width: 80%;
-                bottom: 1rem;
+                max-width: 88%;
+                bottom: 1.5rem;
             }
         </style>
     </section>
