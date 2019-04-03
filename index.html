@@ -4,17 +4,17 @@
     <title>Пути Оптимизации неисповедимы</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/styles.css">
     <style>
         .shower {
             --slide-ratio: calc(16 / 9);
             --ribbon-size: 40px;
-            --back-color: #ffffff;
+            --white-color: #ffffff;
             --default-color: #000;
         }
 
         .slide {
-            background-color: var(--back-color);
+            background-color: var(--white-color);
         }
 
         .slide::after {
@@ -234,6 +234,42 @@
                 <a href="https://medium.com/web-standards/performance-metrics-ff23c213164e">© Метрики загрузки страницы</a>
             </figcaption>
         </figure>
+    </section>
+
+    <section class="slide" id="js">
+        <h2>Выполнение JS</h2>
+
+        <img class="" src="pictures/js-default.png" alt="js-default">
+
+        <div>
+            <strong>async</strong>
+            <img class="" src="pictures/js-async.png" alt="js-async">
+        </div>
+
+        <div>
+            <strong>defer</strong>
+            <img class="" src="pictures/js-defer.png" alt="js-defer">
+        </div>
+
+
+        <style>
+            #js h2 {
+                margin-bottom: 0;
+            }
+
+            #js img {
+                max-width: 100%;
+                padding-bottom: 10px;
+            }
+
+            #js div {
+                position: relative;
+            }
+
+            #js strong {
+                position: absolute;
+            }
+        </style>
     </section>
 
     <section class="slide">
@@ -656,7 +692,7 @@
     <section class="slide" id="requestPriority">
         <h2>Приоритеты запросов</h2>
         <p><a href="https://calibreapp.com/blog/critical-request/">Статья</a></p>
-        <img class="place center bottom next" src="/pictures/request_priority.png" alt="request_priority">
+        <img class="place center bottom next" src="pictures/request_priority.png" alt="request_priority">
 
         <style>
             #requestPriority img {
@@ -695,9 +731,9 @@
             <li>Подложка баннера на <a href="https://www.cerave.l.oggettoweb.com/">Cerave</a></li>
         </ul>
 
-        <img class="place center bottom next" src="/pictures/cerave_top_menu_banner.jpg"/>
-        <img class="place center bottom next" src="/pictures/cerave_banner_placeholder.jpg"/>
-        <img class="place center bottom next" src="/pictures/cerave_banner.jpg"/>
+        <img class="place center bottom next" src="pictures/cerave_top_menu_banner.jpg"/>
+        <img class="place center bottom next" src="pictures/cerave_banner_placeholder.jpg"/>
+        <img class="place center bottom next" src="pictures/cerave_banner.jpg"/>
 
         <style>
             #lazyloadCustom img {
@@ -814,7 +850,7 @@
         </ul>
 
         <p class="next img-title">webpack-bundle-analyzer</p>
-        <img class="place center bottom next" src="/pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
+        <img class="place center bottom next" src="pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
 
         <code class="next code">
             npm i webpack-bundle-analyzer<br>
@@ -975,75 +1011,6 @@
         </style>
     </section>
 
-    <section class="slide" id="js">
-        <h2>Выполнение JS</h2>
-
-        <img class="" src="pictures/js-default.png" alt="js-default">
-
-        <div>
-            <strong>async</strong>
-            <img class="" src="pictures/js-async.png" alt="js-async">
-        </div>
-
-        <div>
-            <strong>defer</strong>
-            <img class="" src="pictures/js-defer.png" alt="js-defer">
-        </div>
-
-
-        <style>
-            #js h2 {
-                margin-bottom: 0;
-            }
-
-            #js img {
-                max-width: 100%;
-                padding-bottom: 10px;
-            }
-
-            #js div {
-                position: relative;
-            }
-
-            #js strong {
-                position: absolute;
-            }
-        </style>
-    </section>
-
-    <section class="slide" id="rwww">
-        <h2>read-write-write-write</h2>
-
-        <pre>
-            <code>for (var p = 0; p < paragraphs.length; p++) {</code>
-            <code>    var para = paragraphs[p];</code>
-            <code>    var width = div.offsetWidth;</code>
-            <code>    para.style.left = width + 'px';</code>
-            <code>}</code>
-        </pre>
-
-        <hr>
-
-        <pre class="next">
-            <code>var width = div.offsetWidth;</code>
-            <code>for (var p = 0; p < paragraphs.length; p++) {</code>
-            <code>    var para = paragraphs[p];</code>
-            <code>    para.style.left = width + 'px';</code>
-            <code>}</code>
-        </pre>
-
-        <style>
-            #rwww pre {
-                font-size: .8em;
-            }
-
-            #rwww h2 {
-                margin-top: 0;
-                margin-bottom: 10px;
-            }
-        </style>
-    </section>
-
     <section class="slide" id="resourceHints">
         <h2>Ресурсные подсказки (Resource Hints)</h2>
 
@@ -1156,7 +1123,7 @@
         <h2>Можно ничего не делать</h2>
 
         <figure>
-            <img class="place center center" src="/pictures/http2.png" alt="http2">
+            <img class="place center center" src="pictures/http2.png" alt="http2">
         </figure>
 
         <style>
@@ -1217,7 +1184,7 @@
 
         <p class="next note">Благодаря uglify кастомная сжимала лучше, скрипты весили меньше</p>
 
-        <img class="place center bottom next" src="/pictures/m2_js_min_comparison.png" alt="m2_js_min_comparison"/>
+        <img class="place center bottom next" src="pictures/m2_js_min_comparison.png" alt="m2_js_min_comparison"/>
 
         <style>
             #cerave_magento_min ul {
@@ -1243,8 +1210,8 @@
             <li>Большой критический путь</li>
         </ul>
 
-        <img class="place bottom next img-left" src="/pictures/cerave_requests_before_bundle1.jpg" alt="cerave_requests_after_bundle"/>
-        <img class="place bottom next img-right" src="/pictures/cerave_requests_before_bundle2.jpg" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-left" src="pictures/cerave_requests_before_bundle1.jpg" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-right" src="pictures/cerave_requests_before_bundle2.jpg" alt="cerave_requests_after_bundle"/>
 
         <style>
             #cerave_bundle1 h2 {
@@ -1284,7 +1251,7 @@
             <li>gulp-таск ходит по файлам модулей и объединяет их в файлы бандлов</li>
         </ul>
 
-        <img class="place center bottom next" src="/pictures/cerave_requests_after.jpg" alt="cerave_requests_after_bundle"/>
+        <img class="place center bottom next" src="pictures/cerave_requests_after.jpg" alt="cerave_requests_after_bundle"/>
 
         <style>
             #cerave_bundle3 h2 {
@@ -1431,6 +1398,6 @@
 
     <div class="progress"></div>
 
-    <script src="node_modules/shower-core/shower.min.js"></script>
+    <script src="src/shower.min.js"></script>
 </body>
 </html>
