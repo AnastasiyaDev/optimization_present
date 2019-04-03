@@ -4,17 +4,23 @@
     <title>Пути Оптимизации неисповедимы</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <link rel="stylesheet" href="src/styles/styles.css">
     <style>
         .shower {
             --slide-ratio: calc(16 / 9);
             --ribbon-size: 40px;
+            --white-color: #ffffff;
+            --default-color: #000;
+        }
+
+        .slide {
+            background-color: var(--white-color);
         }
 
         .slide::after {
             background-image: none;
             background-color: #faec6f;
-            color: #000;
+            color: var(--default-color);
         }
 
         .progress {
@@ -30,6 +36,14 @@
             margin-top: 1rem;
             margin-bottom: .1rem;
             line-height: 2rem;
+        }
+
+        .brand {
+            color: var(--default-color);
+        }
+
+        .green {
+            background-color: #97d64d;
         }
     </style>
 </head>
@@ -222,6 +236,42 @@
         </figure>
     </section>
 
+    <section class="slide" id="js">
+        <h2>Выполнение JS</h2>
+
+        <img class="" src="pictures/js-default.png" alt="js-default">
+
+        <div>
+            <strong>async</strong>
+            <img class="" src="pictures/js-async.png" alt="js-async">
+        </div>
+
+        <div>
+            <strong>defer</strong>
+            <img class="" src="pictures/js-defer.png" alt="js-defer">
+        </div>
+
+
+        <style>
+            #js h2 {
+                margin-bottom: 0;
+            }
+
+            #js img {
+                max-width: 100%;
+                padding-bottom: 10px;
+            }
+
+            #js div {
+                position: relative;
+            }
+
+            #js strong {
+                position: absolute;
+            }
+        </style>
+    </section>
+
     <section class="slide">
         <h2>Прогрессивные веб-метрики (ПВМ)</h2>
         <figure>
@@ -321,7 +371,7 @@
             <li class="next">
                 <a href="https://www.npmjs.com/package/shave"><code>shave.js</code></a>
                 <br>
-                <img class="truncate next" src="../pictures/truncate.png" alt="truncate">
+                <img class="truncate next" src="pictures/truncate.png" alt="truncate">
             </li>
         </ul>
 
@@ -345,7 +395,7 @@
         <h2><code>-webkit-line-clamp</code></h2>
         
         <figure>
-            <img class="place center" src="../pictures/line-clamp.png" alt="webkitLineClamp">
+            <img class="place center" src="pictures/line-clamp.png" alt="webkitLineClamp">
         </figure>
 
         <p class="place center bottom">
@@ -647,7 +697,7 @@
     <section class="slide" id="requestPriority">
         <h2>Приоритеты запросов</h2>
         <p><a href="https://calibreapp.com/blog/critical-request/">Статья</a></p>
-        <img class="place center bottom next" src="/pictures/request_priority.png" alt="request_priority">
+        <img class="place center bottom next" src="pictures/request_priority.png" alt="request_priority">
 
         <style>
             #requestPriority img {
@@ -686,9 +736,9 @@
             <li>Подложка баннера на <a href="https://www.cerave.l.oggettoweb.com/">Cerave</a></li>
         </ul>
 
-        <img class="place center bottom next" src="/pictures/cerave_top_menu_banner.png"/>
-        <img class="place center bottom next" src="/pictures/cerave_banner_placeholder.png"/>
-        <img class="place center bottom next" src="/pictures/cerave_banner.png"/>
+        <img class="place center bottom next" src="pictures/cerave_top_menu_banner.jpg"/>
+        <img class="place center bottom next" src="pictures/cerave_banner_placeholder.jpg"/>
+        <img class="place center bottom next" src="pictures/cerave_banner.jpg"/>
 
         <style>
             #lazyloadCustom img {
@@ -805,7 +855,7 @@
         </ul>
 
         <p class="next img-title">webpack-bundle-analyzer</p>
-        <img class="place center bottom next" src="/pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
+        <img class="place center bottom next" src="pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
 
         <code class="next code">
             npm i webpack-bundle-analyzer<br>
@@ -966,75 +1016,6 @@
         </style>
     </section>
 
-    <section class="slide" id="js">
-        <h2>Выполнение JS</h2>
-
-        <img class="" src="pictures/js-default.png" alt="js-default">
-
-        <div>
-            <strong>async</strong>
-            <img class="" src="pictures/js-async.png" alt="js-async">
-        </div>
-
-        <div>
-            <strong>defer</strong>
-            <img class="" src="pictures/js-defer.png" alt="js-defer">
-        </div>
-
-
-        <style>
-            #js h2 {
-                margin-bottom: 0;
-            }
-
-            #js img {
-                max-width: 100%;
-                padding-bottom: 10px;
-            }
-
-            #js div {
-                position: relative;
-            }
-
-            #js strong {
-                position: absolute;
-            }
-        </style>
-    </section>
-
-    <section class="slide" id="rwww">
-        <h2>read-write-write-write</h2>
-
-        <pre>
-            <code>for (var p = 0; p < paragraphs.length; p++) {</code>
-            <code>    var para = paragraphs[p];</code>
-            <code>    var width = div.offsetWidth;</code>
-            <code>    para.style.left = width + 'px';</code>
-            <code>}</code>
-        </pre>
-
-        <hr>
-
-        <pre class="next">
-            <code>var width = div.offsetWidth;</code>
-            <code>for (var p = 0; p < paragraphs.length; p++) {</code>
-            <code>    var para = paragraphs[p];</code>
-            <code>    para.style.left = width + 'px';</code>
-            <code>}</code>
-        </pre>
-
-        <style>
-            #rwww pre {
-                font-size: .8em;
-            }
-
-            #rwww h2 {
-                margin-top: 0;
-                margin-bottom: 10px;
-            }
-        </style>
-    </section>
-
     <section class="slide" id="resourceHints">
         <h2>Ресурсные подсказки (Resource Hints)</h2>
 
@@ -1147,7 +1128,7 @@
         <h2>Можно ничего не делать</h2>
 
         <figure>
-            <img class="place center center" src="/pictures/http2.png" alt="http2">
+            <img class="place center center" src="pictures/http2.png" alt="http2">
         </figure>
 
         <style>
@@ -1216,7 +1197,7 @@
 
         <p class="next note">Благодаря uglify кастомная сжимала лучше, скрипты весили меньше</p>
 
-        <img class="place center bottom next" src="/pictures/m2_js_min_comparison.png" alt="m2_js_min_comparison"/>
+        <img class="place center bottom next" src="pictures/m2_js_min_comparison.png" alt="m2_js_min_comparison"/>
 
         <style>
             #cerave_magento_min h2 {
@@ -1245,8 +1226,8 @@
             <li>Большой критический путь</li>
         </ul>
 
-        <img class="place bottom next img-left" src="/pictures/cerave_requests_before_bundle1.png" alt="cerave_requests_after_bundle"/>
-        <img class="place bottom next img-right" src="/pictures/cerave_requests_before_bundle2.png" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-left" src="pictures/cerave_requests_before_bundle1.jpg" alt="cerave_requests_after_bundle"/>
+        <img class="place bottom next img-right" src="pictures/cerave_requests_before_bundle2.jpg" alt="cerave_requests_after_bundle"/>
 
         <style>
             #cerave_bundle1 h2 {
@@ -1286,7 +1267,7 @@
             <li>gulp-таск ходит по файлам модулей и объединяет их в файлы бандлов</li>
         </ul>
 
-        <img class="place center bottom next" src="/pictures/cerave_requests_after.png" alt="cerave_requests_after_bundle"/>
+        <img class="place center bottom next" src="pictures/cerave_requests_after.jpg" alt="cerave_requests_after_bundle"/>
 
         <style>
             #cerave_bundle3 h2 {
@@ -1329,10 +1310,96 @@
         </style>
     </section>
 
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">skinCeuticals</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>10.86</td>
+                <td>4.97</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>5.41</td>
+                <td>3.03</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~50%</td>
+                <td>~39%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">CeraVe</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>11.62</td>
+                <td>4.97</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>8.09</td>
+                <td>3.25</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~30%</td>
+                <td>~35%</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="slide">
+        <h2>Результаты catchpoint для <span class="brand">Kerastase</span></h2>
+
+        <table>
+            <tr>
+                <th scope="col"></th>
+                <th>мобилка (cек)</th>
+                <th>десктоп (cек)</th>
+            </tr>
+            <tr>
+                <th scope="row">до</th>
+                <td>17.74</td>
+                <td>5.61</td>
+            </tr>
+            <tr>
+                <th scope="row">после</th>
+                <td>8.47</td>
+                <td>3.92</td>
+            </tr>
+            <tr class="green">
+                <th scope="row">быстрее на</th>
+                <td>~52%</td>
+                <td>~30%</td>
+            </tr>
+        </table>
+    </section>
+
     <section class="slide clear" id="see-more">
         <h2 class="shout">
-            <a href="https://github.com/AnastasiyaDev/optimization-notes/">Заметки на GitHub</a>
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">Мои заметки на GitHub</a>
         </h2>
+
+        <div class="copyright right">
+            <a href="https://github.com/AnastasiyaDev/optimization-notes/">© AnastasiyaDev</a>
+        </div>
+
         <style>
             #see-more h2 {
                 font-size: 100px;
@@ -1347,6 +1414,6 @@
 
     <div class="progress"></div>
 
-    <script src="node_modules/shower-core/shower.min.js"></script>
+    <script src="src/shower.min.js"></script>
 </body>
 </html>
