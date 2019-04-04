@@ -811,8 +811,8 @@
         </ul>
 
         <ul class="next">
-            <li>Плюс - ненужный для первого экрана css догружается в low-приоритете</li>
-            <li>Минус - браузеру после загрузки нужно будет перерендерить части страницы</li>
+            <li class="prop">ненужный для первого экрана css догружается в low-приоритете</li>
+            <li class="cons">браузеру после загрузки нужно будет перерендерить части страницы</li>
         </ul>
 
         <a class="next" href="https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d">статья</a>
@@ -821,8 +821,15 @@
             #lazyloadCss h3 {
                 margin-bottom: 0;
             }
+            #lazyloadCss li.prop:before {
+                content: '+';
+            }
+            #lazyloadCss li.cons:before {
+                content: '-';
+            }
             #lazyloadCss ul {
                 line-height: 2.5rem;
+                list-style-type: none;
             }
         </style>
     </section>
@@ -837,14 +844,21 @@
 
         <h3 class="next subtitle">Плюсы/минусы</h3>
         <ul class="next">
-            <li>Плюс - не грузится лишний html и картинки</li>
-            <li>Минус - сложнее проверять адаптивку в браузере (только с перезагрузкой страницы)</li>
+            <li class="prop">не грузится лишний html и картинки</li>
+            <li class="cons">сложнее проверять адаптивку в браузере (только с перезагрузкой страницы)</li>
         </ul>
 
         <style>
             #excessHtml ul {
                 line-height: 2rem;
                 font-size: 1.2rem;
+                list-style-type: none;
+            }
+            #excessHtml li.prop:before {
+                content: '+';
+            }
+            #excessHtml li.cons:before {
+                content: '-';
             }
             #excessHtml .note {
                 line-height: 1rem;
