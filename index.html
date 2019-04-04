@@ -236,6 +236,17 @@
         </figure>
     </section>
 
+    <section class="slide">
+        <h2>Прогрессивные веб-метрики (ПВМ)</h2>
+        <figure>
+            <img class="place center bottom" src="pictures/performance-metrics.png" alt="performance-metrics">
+
+            <figcaption class="copyright right">
+                <a href="https://medium.com/web-standards/performance-metrics-ff23c213164e">© Метрики загрузки страницы</a>
+            </figcaption>
+        </figure>
+    </section>
+
     <section class="slide" id="js">
         <h2>Выполнение JS</h2>
 
@@ -270,17 +281,6 @@
                 position: absolute;
             }
         </style>
-    </section>
-
-    <section class="slide">
-        <h2>Прогрессивные веб-метрики (ПВМ)</h2>
-        <figure>
-            <img class="place center bottom" src="pictures/performance-metrics.png" alt="performance-metrics">
-
-            <figcaption class="copyright right">
-                <a href="https://medium.com/web-standards/performance-metrics-ff23c213164e">© Метрики загрузки страницы</a>
-            </figcaption>
-        </figure>
     </section>
 
     <section class="slide" id="tools">
@@ -733,7 +733,7 @@
 
         <ul>
             <li>В местах, где библиотека не справляется (меню или collapsible блок)</li>
-            <li>Подложка баннера на <a href="https://www.cerave.l.oggettoweb.com/">Cerave</a></li>
+            <li>Подложка баннера на <a href="https://cerave.ru/">Cerave</a></li>
         </ul>
 
         <img class="place center bottom next" src="pictures/cerave_top_menu_banner.jpg"/>
@@ -759,25 +759,30 @@
             </tr>
             <tr>
                 <td>запрос кэшируется варнишем (например, в м2)</td>
-                <td>не так много html</td>
+                <td>запрос идет в мадженту (даже если сам блок в ней закэширован)</td>
             </tr>
             <tr>
-                <td>...</td>
-                <td>...</td>
+                <td>много html и dom-элементов</td>
+                <td>html небольшой</td>
+            </tr>
+            <tr>
+                <td>ресурсоемко на бэке</td>
+                <td></td>
             </tr>
             <tr>
                 <td>
                     Примеры:
                     <ul>
-                        <li>слайдер из >20 товаров</li>
+                        <li>слайдер из 10+ товаров</li>
                         <li>выбор геолокации</li>
+                        <li>миникорзина</li>
                     </ul>
                 </td>
                 <td>
                     Примеры:
                     <ul>
-                        <li>слайдер из <20 товаров</li>
-                        <li>Блок с картинками</li>
+                        <li>слайдер из <10 товаров</li>
+                        <li>блок с картинками</li>
                     </ul>
                 </td>
             </tr>
@@ -786,6 +791,9 @@
         <style>
             #lazyloadAjax td {
                 font-size: .8em;
+                line-height: 2rem;
+                padding-top: .2rem;
+                padding-bottom: .2rem;
             }
             #lazyloadAjax th {
                 line-height: 1.4;
@@ -807,7 +815,7 @@
             <li>Минус - браузеру после загрузки нужно будет перерендерить части страницы</li>
         </ul>
 
-        <a href="https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d">статья</a>
+        <a class="next" href="https://medium.com/web-standards/critical-and-progressive-css-d6611f034d7d">статья</a>
 
         <style>
             #lazyloadCss h3 {
@@ -855,7 +863,6 @@
         </ul>
 
         <p class="next img-title">webpack-bundle-analyzer</p>
-        <img class="place center bottom next" src="pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
 
         <code class="next code">
             npm i webpack-bundle-analyzer<br>
@@ -863,6 +870,7 @@
             env NODE_ENV=production webpack --json > stats.json<br>
             npx webpack-bundle-analyzer stats.json
         </code>
+        <img class="place center bottom next" src="pictures/webpack_bundle_analyzer.jpg" alt="webpack_bundle_analyzer">
 
         <style>
             #excessJs h2 {
@@ -1031,6 +1039,8 @@
         <code>&lt;link rel="prefetch" href="https://olololo.ru/jquery.min.js" as="script"&gt;</code><br>
         <code>&lt;link rel="preload" href="https://olololo.ru/fnt/fnt_medium.woff2" as="font"&gt;</code>
 
+        <a class="next" href="https://habr.com/p/445264/">хорошая статья</a>
+
         <style>
             #resourceHints li {
                 line-height: 1.55;
@@ -1156,7 +1166,7 @@
             <li>Золотое яблоко</li>
         </ul>
 
-        <p class="next">Подробности в задаче на <a href="http://redmine.oggettoweb.com/issues/80290#note-25">редмайне</a></p>
+        <p class="next">Подробности в задаче на <a href="http://redmine.oggettoweb.com/issues/80290#note-25">редмайне</a> и в <a href="https://git.oggettoweb.com/loreal/cerave/tree/80290/gulp#%D1%82%D0%B0%D1%81%D0%BA%D0%B8-%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%BA%D1%88%D0%BD-%D1%80%D0%B5%D0%B6%D0%B8%D0%BC%D0%B0">readme</a></p>
 
         <p class="next note">Максим Халилов и Ласло</p>
     </section>
@@ -1253,13 +1263,30 @@
     <section class="slide" id="cerave_bundle2">
         <h2>Бандлинг requirejs</h2>
 
-        <a href="https://requirejs.org/docs/api.html#config-bundles">поддержка рекваером из коробки (часть json с bundles).</a><br>
-        пример json<br>
-        но чтобы файлы модулей собрать, нужно было юзать отдельный сборщик
+        <p>RequireJs поддерживает бандлинг <a href="https://requirejs.org/docs/api.html#config-bundles">из коробки</a>. Нужно просто задать конфиг</p>
+
+        <p class="next">Далее надо было собрать сами эти файлы. Возможные решения:</p>
+        <ul class="next">
+            <li><a href="https://www.npmjs.com/package/gulp-requirejs-optimize">requirejs-optimizer</a><span class="next note"> - но это отдельная сборка, обрабатывает весь конфиг, а не конкретную часть</span></li>
+            <li>делать сборку на бэке<span class="next note"> - менять коровские файлы, хуже совместимость с будущими версиями, делать для обоих режимов</span></li>
+            <li>делать сборку на галпе<span class="next note"> - самый оптимальный вариант</span></li>
+        </ul>
+
+        <style>
+            #cerave_bundle2 p {
+                margin-bottom: .5rem;
+            }
+            #cerave_bundle2 .note {
+                display: block;
+                margin: 0 0 .5rem;
+                line-height: 1rem;
+                color: #3a3f41;
+            }
+        </style>
     </section>
 
     <section class="slide" id="cerave_bundle3">
-        <h2>Было решено сделать свой</h2>
+        <h2>Было решено сделать свой бандлинг на галп</h2>
 
         <ul>
             <li>Задается валидный для requirejs json-файл с названиями бандлов и составляющими модулями</li>
@@ -1275,8 +1302,8 @@
             }
             #cerave_bundle3 li {
                 line-height: 2rem;
+                margin-bottom: .5rem;
             }
-
             #cerave_bundle3 img {
                 max-width: 60%;
                 height: 50%;
@@ -1288,9 +1315,9 @@
         <h2>Плюсы</h2>
 
         <ul>
-            <li>Меньше запросов</li>
-            <li>Короче критический путь</li>
-            <li>Бандлы меньше весят, чем раздельные файлы в сумме (gzip и хэдеры)</li>
+            <li class="next">Меньше запросов</li>
+            <li class="next">Короче критический путь</li>
+            <li class="next">Бандлы меньше весят, чем раздельные файлы в сумме (gzip и отсутствие хэдеров)</li>
         </ul>
     </section>
 
@@ -1298,10 +1325,9 @@
         <h2>Минусы и что доработать</h2>
 
         <ul>
-            <li class="next">requirejs-config.js переписывается в dev-режиме, поэтому нужно запускать таск бандлинга заново</li>
-            <li class="next">пока работает только с таской minify (после нее)</li>
+            <li class="next">нужен prod-режим. requirejs-config.js переписывается в dev-режиме, поэтому приходится запускать таск бандлинга заново</li>
             <li class="next">код не супер</li>
-            <li class="next">Доработать бандлинг html-модулей</li>
+            <li class="next">доработать бандлинг html-модулей</li>
         </ul>
         <style>
             #cerave_bundle_cons li {
@@ -1311,7 +1337,7 @@
     </section>
 
     <section class="slide">
-        <h2>Результаты catchpoint для <span class="brand">skinCeuticals</span></h2>
+        <h2>Результаты catchpoint для <span class="brand">SkinCeuticals</span></h2>
 
         <table>
             <tr>
@@ -1353,12 +1379,12 @@
             </tr>
             <tr>
                 <th scope="row">после</th>
-                <td>8.09</td>
+                <td>6.36</td>
                 <td>3.25</td>
             </tr>
             <tr class="green">
                 <th scope="row">быстрее на</th>
-                <td>~30%</td>
+                <td>~45%</td>
                 <td>~35%</td>
             </tr>
         </table>
