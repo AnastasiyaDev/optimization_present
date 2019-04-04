@@ -681,7 +681,7 @@
         </ul>
 
         <h3 class="next subtitle">Суть</h3>
-        <ul class="next">
+        <ul>
             <li class="next">Не загружать то, что не нужно</li>
             <li class="next">Загружать нужное, но позже и с более низким приоритетом</li>
         </ul>
@@ -752,24 +752,24 @@
         <h3>Аяксовая подгрузка блоков</h3>
         <p class="note">&mdash; часть разметки подгружается аяксом, отдельно от основного html страницы. Backend + Frontend</p>
 
-        <table>
+        <table class="next">
             <tr>
                 <th>можно</th>
                 <th>не стоит</th>
             </tr>
-            <tr>
+            <tr class="next">
                 <td>запрос кэшируется варнишем (например, в м2)</td>
                 <td>запрос идет в мадженту (даже если сам блок в ней закэширован)</td>
             </tr>
-            <tr>
+            <tr class="next">
                 <td>много html и dom-элементов</td>
                 <td>html небольшой</td>
             </tr>
-            <tr>
+            <tr class="next">
                 <td>ресурсоемко на бэке</td>
                 <td></td>
             </tr>
-            <tr>
+            <tr class="next">
                 <td>
                     Примеры:
                     <ul>
@@ -1056,10 +1056,17 @@
         <a class="next" href="https://habr.com/p/445264/">хорошая статья</a>
 
         <style>
+            #resourceHints h2 {
+                margin-bottom: .5rem;
+            }
+            #resourceHints ul {
+                margin: 0;
+            }
             #resourceHints li {
                 line-height: 1.55;
             }
             #resourceHints code {
+                margin: .5rem;
                 line-height: 1.2rem;
                 font-size: 1rem;
             }
